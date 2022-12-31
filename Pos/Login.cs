@@ -14,6 +14,8 @@ namespace Pos
 {
     public partial class Login : Form
     {
+        public bool UserSuccessfullyAuthenticated { get; private set; }
+        public bool IsUserAdmin { get; private set; }
         public Login()
         {
             InitializeComponent();
@@ -24,9 +26,10 @@ namespace Pos
             Tuple<Boolean, Boolean> result = IsUserValid();
             if (result.Item1 && result.Item2)
             {
+                UserSuccessfullyAuthenticated = true;
+                IsUserAdmin = true;
                 this.Close();
-                Home frmhome = new Home();
-                frmhome.Show();
+
             }
             else if (result.Item1)
             {
