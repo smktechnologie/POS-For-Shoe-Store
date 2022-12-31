@@ -104,5 +104,27 @@ namespace Pos
 
             }
         }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "User")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                User f2 = new User();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
     }
 }
