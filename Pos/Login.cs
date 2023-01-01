@@ -33,7 +33,8 @@ namespace Pos
             }
             else if (result.Item1)
             {
-                MessageBox.Show("Non Admin user loggedin succesfully.");
+                UserSuccessfullyAuthenticated = true;              
+                this.Close();               
             }
             else
             {

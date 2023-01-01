@@ -15,7 +15,8 @@ namespace Pos
     public partial class Order : Form
     {
         double TotalOrderSum = 0.0;
-        Dictionary<int, ProductDetails> DictOrderDetails = new Dictionary<int, ProductDetails>();
+        Dictionary<KeyValuePair<int, int>, ProductDetails> DictOrderDetails = new Dictionary<KeyValuePair<int, int>, ProductDetails>();
+        DataTable dTableproductsstock = new DataTable();
 
         DataTable dTableproducts = new DataTable();
         public Order()
@@ -26,6 +27,10 @@ namespace Pos
         private void Order_Load(object sender, EventArgs e)
         {
             load_Products();
+            load_product_stock();
+            var bindingSource1 = new BindingSource();
+            bindingSource1.DataSource = Program.productsizes;
+            cmbbxSize.DataSource = bindingSource1.DataSource;
         }
 
         private void load_Products()
@@ -53,12 +58,37 @@ namespace Pos
             }
         }
 
+        private void load_product_stock()
+        {
+            try
+            {
+                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+                string Query = "select * from `pos`.`productstock` ;";
+                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                MyConn2.Open();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
+
+                MyAdapter.Fill(dTableproductsstock);
+
+                MyConn2.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             int ProductID = Convert.ToInt32(cmbbxitem.SelectedValue.ToString());
+            int Size = Convert.ToInt32(cmbbxSize.SelectedValue.ToString());
             int Quantity = Convert.ToInt32(txtbxQuantity.Text);
             int Stock = Convert.ToInt32(txtbxStock.Text);
-            if (!DictOrderDetails.ContainsKey(ProductID))
+            KeyValuePair<int, int> Productkey = new KeyValuePair<int, int>(ProductID, Size);
+            if (!DictOrderDetails.ContainsKey(Productkey))
             {
                 if (Quantity <= Stock)
                 {
@@ -66,14 +96,15 @@ namespace Pos
                     Double Total = Convert.ToDouble(txtbxPrice.Text) * Convert.ToDouble(txtbxQuantity.Text);
                     dtgviewItems.Rows.Add(
                         cmbbxitem.SelectedValue.ToString(),
-                        cmbbxitem.SelectedText.ToString(),
+                        cmbbxitem.Text,
                         txtbxPrice.Text,
+                         cmbbxSize.SelectedValue.ToString(),
                         txtbxStock.Text,
                         txtbxQuantity.Text,
                         Total.ToString(),
                         "Remove"
                         );
-                    DictOrderDetails.Add(ProductID, new ProductDetails(Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
+                    DictOrderDetails.Add(Productkey, new ProductDetails(Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
                     btn_Submit.Enabled = true;
                     TotalOrderSum += Total;
                     txtbxTotal.Text = TotalOrderSum.ToString();
@@ -98,7 +129,16 @@ namespace Pos
             {
                 DataRow[] filteredRows = dTableproducts.Select("ID = " + cmb.SelectedValue.ToString());
                 txtbxPrice.Text = filteredRows.FirstOrDefault()["Price"].ToString();
-                txtbxStock.Text = filteredRows.FirstOrDefault()["Quantity"].ToString();
+                DataRow[] filteredRowsstock = dTableproductsstock.Select("ProductID = " + cmb.SelectedValue + " and Number = " + cmbbxSize.SelectedValue);
+                if (filteredRowsstock.Length > 0)
+                {
+                    txtbxStock.Text = filteredRowsstock.FirstOrDefault()["Quantity"].ToString();
+                }
+                else
+                {
+                    txtbxStock.Text = "0"; ;
+                }
+                cmbbxSize.Enabled = true;
                 btnAdd.Enabled = true;
                 txtbxQuantity.Enabled = true;
             }
@@ -112,13 +152,15 @@ namespace Pos
         private void dtgviewItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
 
-            if (e.RowIndex != dtgviewItems.NewRowIndex && e.ColumnIndex == 6)
+            if (e.RowIndex != dtgviewItems.NewRowIndex && e.ColumnIndex == 7)
             {
                 ProductDetails pd;
                 int ProductID = Convert.ToInt32(dtgviewItems.Rows[e.RowIndex].Cells[0].Value);
+                int Size = Convert.ToInt32(dtgviewItems.Rows[e.RowIndex].Cells[3].Value);
+                KeyValuePair<int, int> Productkey = new KeyValuePair<int, int>(ProductID, Size);
                 dtgviewItems.Rows.RemoveAt(e.RowIndex);
-                DictOrderDetails.TryGetValue(ProductID, out pd);
-                DictOrderDetails.Remove(ProductID);
+                DictOrderDetails.TryGetValue(Productkey, out pd);
+                DictOrderDetails.Remove(Productkey);
                 TotalOrderSum = TotalOrderSum - pd.Total;
                 txtbxTotal.Text = TotalOrderSum.ToString();
                 if (DictOrderDetails.Count <= 0)
@@ -134,7 +176,7 @@ namespace Pos
             int OrderID = getOrderID();
             insertOrderDetails(OrderID);
             MessageBox.Show("Order Submitted Successfully,Order ID : " + OrderID.ToString());
-            this.Close();   
+            this.Close();
         }
 
         void insertOrder()
@@ -199,12 +241,12 @@ namespace Pos
                 //This is my connection string i have assigned the database file address path
                 string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
                 //This is my insert query in which i am taking input from the user through windows forms
-                string Query = "insert into `pos`.`orderdetail`(OrderID,ProductID,Price,Quantity,Total) values";
+                string Query = "insert into `pos`.`orderdetail`(OrderID,ProductID,Price,size,Quantity,Total) values";
                 string UpdateQuery = string.Empty;
                 foreach (var item in DictOrderDetails)
                 {
-                    Query += "(" + OrderID + "," + item.Key.ToString() + "," + item.Value.Price.ToString() + "," + item.Value.Quantity.ToString() + "," + item.Value.Total.ToString() + "),";
-                    UpdateQuery += "Update `pos`.`product` set Quantity =" + item.Value.RemainingQuantity.ToString() + " where ID = " + item.Key.ToString() + " and isactive=1;";
+                    Query += "(" + OrderID + "," + item.Key.Key.ToString() + "," + item.Value.Price.ToString() + "," + item.Key.Value.ToString() + "," + item.Value.Quantity.ToString() + "," + item.Value.Total.ToString() + "),";
+                    UpdateQuery += "Update `pos`.`productstock` set Quantity =" + item.Value.RemainingQuantity.ToString() + " where ProductID = " + item.Key.Key.ToString() + " and Number = " + item.Key.Value.ToString() + ";";
                 }
                 Query = Query.Remove(Query.Length - 1, 1);
                 Query += ";";
@@ -228,6 +270,30 @@ namespace Pos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void cmbbxSize_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            var cmb = (sender as ComboBox);
+            if (cmb != null && cmb.SelectedItem != null)
+            {
+                DataRow[] filteredRowsstock = dTableproductsstock.Select("ProductID = " + cmbbxitem.SelectedValue + " and Number = " + cmbbxSize.SelectedValue);
+                if (filteredRowsstock.Length > 0)
+                {
+                    txtbxStock.Text = filteredRowsstock.FirstOrDefault()["Quantity"].ToString();
+                }
+                else
+                {
+                    txtbxStock.Text = "0"; ;
+                }
+                btnAdd.Enabled = true;
+                txtbxQuantity.Enabled = true;
+            }
+            else
+            {
+                btnAdd.Enabled = false;
+                txtbxQuantity.Enabled = false;
             }
         }
     }

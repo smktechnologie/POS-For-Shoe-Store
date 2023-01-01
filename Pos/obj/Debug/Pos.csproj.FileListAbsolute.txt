@@ -54,3 +54,4 @@ C:\POS GIT\POS\Pos\obj\Debug\Pos.exe.config
 C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CopyComplete
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Login.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.User.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.HomeUser.resources

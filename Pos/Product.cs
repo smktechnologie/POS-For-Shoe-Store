@@ -52,7 +52,10 @@ namespace Pos
             }
             load_data();
         }
+        void AddPRoductStock()
+        {
 
+        }
 
         private void load_data()
         {

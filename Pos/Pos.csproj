@@ -56,6 +56,12 @@
     <Compile Include="Expense.Designer.cs">
       <DependentUpon>Expense.cs</DependentUpon>
     </Compile>
+    <Compile Include="HomeUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HomeUser.Designer.cs">
+      <DependentUpon>HomeUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inventory.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </Compile>
     <EmbeddedResource Include="Expense.resx">
       <DependentUpon>Expense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeUser.resx">
+      <DependentUpon>HomeUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory.resx">
       <DependentUpon>Inventory.cs</DependentUpon>

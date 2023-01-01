@@ -41,6 +41,8 @@
             this.txtbxPid = new System.Windows.Forms.TextBox();
             this.lblPid = new System.Windows.Forms.Label();
             this.btnAddInventory = new System.Windows.Forms.Button();
+            this.cmbSize = new System.Windows.Forms.ComboBox();
+            this.lblsize = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblProduct
@@ -64,7 +66,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(27, 127);
+            this.lblQuantity.Location = new System.Drawing.Point(27, 142);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 2;
@@ -73,7 +75,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 100);
+            this.label1.Location = new System.Drawing.Point(27, 115);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 13);
             this.label1.TabIndex = 3;
@@ -82,7 +84,7 @@
             // lblVendor
             // 
             this.lblVendor.AutoSize = true;
-            this.lblVendor.Location = new System.Drawing.Point(27, 155);
+            this.lblVendor.Location = new System.Drawing.Point(27, 170);
             this.lblVendor.Name = "lblVendor";
             this.lblVendor.Size = new System.Drawing.Size(41, 13);
             this.lblVendor.TabIndex = 4;
@@ -91,28 +93,28 @@
             // txtbxStock
             // 
             this.txtbxStock.Enabled = false;
-            this.txtbxStock.Location = new System.Drawing.Point(111, 97);
+            this.txtbxStock.Location = new System.Drawing.Point(111, 112);
             this.txtbxStock.Name = "txtbxStock";
             this.txtbxStock.Size = new System.Drawing.Size(100, 20);
             this.txtbxStock.TabIndex = 5;
             // 
             // txtbxQuantity
             // 
-            this.txtbxQuantity.Location = new System.Drawing.Point(111, 124);
+            this.txtbxQuantity.Location = new System.Drawing.Point(111, 139);
             this.txtbxQuantity.Name = "txtbxQuantity";
             this.txtbxQuantity.Size = new System.Drawing.Size(100, 20);
             this.txtbxQuantity.TabIndex = 6;
             // 
             // txtbxVendor
             // 
-            this.txtbxVendor.Location = new System.Drawing.Point(111, 152);
+            this.txtbxVendor.Location = new System.Drawing.Point(111, 167);
             this.txtbxVendor.Name = "txtbxVendor";
             this.txtbxVendor.Size = new System.Drawing.Size(100, 20);
             this.txtbxVendor.TabIndex = 7;
             // 
             // txtbxDesc
             // 
-            this.txtbxDesc.Location = new System.Drawing.Point(111, 178);
+            this.txtbxDesc.Location = new System.Drawing.Point(111, 193);
             this.txtbxDesc.Multiline = true;
             this.txtbxDesc.Name = "txtbxDesc";
             this.txtbxDesc.Size = new System.Drawing.Size(263, 76);
@@ -121,7 +123,7 @@
             // lblVendorDesc
             // 
             this.lblVendorDesc.AutoSize = true;
-            this.lblVendorDesc.Location = new System.Drawing.Point(27, 181);
+            this.lblVendorDesc.Location = new System.Drawing.Point(27, 196);
             this.lblVendorDesc.Name = "lblVendorDesc";
             this.lblVendorDesc.Size = new System.Drawing.Size(60, 13);
             this.lblVendorDesc.TabIndex = 8;
@@ -130,7 +132,7 @@
             // txtbxPid
             // 
             this.txtbxPid.Enabled = false;
-            this.txtbxPid.Location = new System.Drawing.Point(111, 71);
+            this.txtbxPid.Location = new System.Drawing.Point(111, 86);
             this.txtbxPid.Name = "txtbxPid";
             this.txtbxPid.Size = new System.Drawing.Size(100, 20);
             this.txtbxPid.TabIndex = 11;
@@ -138,7 +140,7 @@
             // lblPid
             // 
             this.lblPid.AutoSize = true;
-            this.lblPid.Location = new System.Drawing.Point(27, 74);
+            this.lblPid.Location = new System.Drawing.Point(27, 89);
             this.lblPid.Name = "lblPid";
             this.lblPid.Size = new System.Drawing.Size(58, 13);
             this.lblPid.TabIndex = 10;
@@ -146,7 +148,7 @@
             // 
             // btnAddInventory
             // 
-            this.btnAddInventory.Location = new System.Drawing.Point(299, 275);
+            this.btnAddInventory.Location = new System.Drawing.Point(299, 290);
             this.btnAddInventory.Name = "btnAddInventory";
             this.btnAddInventory.Size = new System.Drawing.Size(75, 23);
             this.btnAddInventory.TabIndex = 12;
@@ -154,11 +156,31 @@
             this.btnAddInventory.UseVisualStyleBackColor = true;
             this.btnAddInventory.Click += new System.EventHandler(this.btnAddInventory_Click);
             // 
+            // cmbSize
+            // 
+            this.cmbSize.FormattingEnabled = true;
+            this.cmbSize.Location = new System.Drawing.Point(111, 57);
+            this.cmbSize.Name = "cmbSize";
+            this.cmbSize.Size = new System.Drawing.Size(100, 21);
+            this.cmbSize.TabIndex = 14;
+            this.cmbSize.SelectionChangeCommitted += new System.EventHandler(this.cmbSize_SelectionChangeCommitted);
+            // 
+            // lblsize
+            // 
+            this.lblsize.AutoSize = true;
+            this.lblsize.Location = new System.Drawing.Point(28, 60);
+            this.lblsize.Name = "lblsize";
+            this.lblsize.Size = new System.Drawing.Size(27, 13);
+            this.lblsize.TabIndex = 13;
+            this.lblsize.Text = "Size";
+            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cmbSize);
+            this.Controls.Add(this.lblsize);
             this.Controls.Add(this.btnAddInventory);
             this.Controls.Add(this.txtbxPid);
             this.Controls.Add(this.lblPid);
@@ -195,5 +217,7 @@
         private System.Windows.Forms.TextBox txtbxPid;
         private System.Windows.Forms.Label lblPid;
         private System.Windows.Forms.Button btnAddInventory;
+        private System.Windows.Forms.ComboBox cmbSize;
+        private System.Windows.Forms.Label lblsize;
     }
 }

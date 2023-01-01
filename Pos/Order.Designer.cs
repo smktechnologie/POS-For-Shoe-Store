@@ -32,13 +32,6 @@
             this.txtbxTotal = new System.Windows.Forms.TextBox();
             this.btn_Submit = new System.Windows.Forms.Button();
             this.dtgviewItems = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Remove = new System.Windows.Forms.DataGridViewLinkColumn();
             this.txtbxPrice = new System.Windows.Forms.TextBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.cmbbxitem = new System.Windows.Forms.ComboBox();
@@ -48,6 +41,16 @@
             this.lblQuantity = new System.Windows.Forms.Label();
             this.txtbxQuantity = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.cmbbxSize = new System.Windows.Forms.ComboBox();
+            this.lblSize = new System.Windows.Forms.Label();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Item = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Stock = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remove = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewItems)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,6 +92,7 @@
             this.ID,
             this.Item,
             this.Price,
+            this.Size,
             this.Stock,
             this.Quantity,
             this.Total,
@@ -100,49 +104,6 @@
             this.dtgviewItems.Size = new System.Drawing.Size(647, 379);
             this.dtgviewItems.TabIndex = 4;
             this.dtgviewItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgviewItems_CellClick);
-            // 
-            // ID
-            // 
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // Item
-            // 
-            this.Item.HeaderText = "Item";
-            this.Item.Name = "Item";
-            this.Item.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.HeaderText = "Price";
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            // 
-            // Stock
-            // 
-            this.Stock.HeaderText = "Stock";
-            this.Stock.Name = "Stock";
-            this.Stock.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // Total
-            // 
-            this.Total.HeaderText = "Total";
-            this.Total.Name = "Total";
-            this.Total.ReadOnly = true;
-            // 
-            // Remove
-            // 
-            this.Remove.HeaderText = "Remove";
-            this.Remove.Name = "Remove";
-            this.Remove.ReadOnly = true;
-            this.Remove.Text = "Remove";
             // 
             // txtbxPrice
             // 
@@ -182,7 +143,7 @@
             // txtbxStock
             // 
             this.txtbxStock.Enabled = false;
-            this.txtbxStock.Location = new System.Drawing.Point(245, 31);
+            this.txtbxStock.Location = new System.Drawing.Point(350, 28);
             this.txtbxStock.Name = "txtbxStock";
             this.txtbxStock.Size = new System.Drawing.Size(100, 20);
             this.txtbxStock.TabIndex = 9;
@@ -190,7 +151,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(242, 16);
+            this.lblStock.Location = new System.Drawing.Point(347, 13);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(35, 13);
             this.lblStock.TabIndex = 10;
@@ -199,7 +160,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(348, 17);
+            this.lblQuantity.Location = new System.Drawing.Point(453, 14);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 12;
@@ -208,7 +169,7 @@
             // txtbxQuantity
             // 
             this.txtbxQuantity.Enabled = false;
-            this.txtbxQuantity.Location = new System.Drawing.Point(351, 32);
+            this.txtbxQuantity.Location = new System.Drawing.Point(456, 29);
             this.txtbxQuantity.Name = "txtbxQuantity";
             this.txtbxQuantity.Size = new System.Drawing.Size(100, 20);
             this.txtbxQuantity.TabIndex = 11;
@@ -216,7 +177,7 @@
             // btnAdd
             // 
             this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(457, 32);
+            this.btnAdd.Location = new System.Drawing.Point(562, 29);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(55, 23);
             this.btnAdd.TabIndex = 13;
@@ -224,11 +185,89 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
+            // cmbbxSize
+            // 
+            this.cmbbxSize.Enabled = false;
+            this.cmbbxSize.FormattingEnabled = true;
+            this.cmbbxSize.Location = new System.Drawing.Point(245, 31);
+            this.cmbbxSize.Name = "cmbbxSize";
+            this.cmbbxSize.Size = new System.Drawing.Size(99, 21);
+            this.cmbbxSize.TabIndex = 16;
+            this.cmbbxSize.SelectionChangeCommitted += new System.EventHandler(this.cmbbxSize_SelectionChangeCommitted);
+            // 
+            // lblSize
+            // 
+            this.lblSize.AutoSize = true;
+            this.lblSize.Location = new System.Drawing.Point(242, 16);
+            this.lblSize.Name = "lblSize";
+            this.lblSize.Size = new System.Drawing.Size(27, 13);
+            this.lblSize.TabIndex = 15;
+            this.lblSize.Text = "Size";
+            // 
+            // ID
+            // 
+            this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Width = 35;
+            // 
+            // Item
+            // 
+            this.Item.HeaderText = "Item";
+            this.Item.Name = "Item";
+            this.Item.ReadOnly = true;
+            this.Item.Width = 200;
+            // 
+            // Price
+            // 
+            this.Price.HeaderText = "Price";
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Width = 90;
+            // 
+            // Size
+            // 
+            this.Size.HeaderText = "Size";
+            this.Size.Name = "Size";
+            this.Size.ReadOnly = true;
+            this.Size.Width = 30;
+            // 
+            // Stock
+            // 
+            this.Stock.HeaderText = "Stock";
+            this.Stock.Name = "Stock";
+            this.Stock.ReadOnly = true;
+            this.Stock.Width = 50;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            this.Quantity.Width = 50;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            this.Total.Width = 60;
+            // 
+            // Remove
+            // 
+            this.Remove.HeaderText = "Remove";
+            this.Remove.Name = "Remove";
+            this.Remove.ReadOnly = true;
+            this.Remove.Text = "Remove";
+            // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(846, 450);
+            this.Controls.Add(this.cmbbxSize);
+            this.Controls.Add(this.lblSize);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.lblQuantity);
             this.Controls.Add(this.txtbxQuantity);
@@ -265,9 +304,12 @@
         private System.Windows.Forms.Label lblQuantity;
         private System.Windows.Forms.TextBox txtbxQuantity;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.ComboBox cmbbxSize;
+        private System.Windows.Forms.Label lblSize;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Item;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Size;
         private System.Windows.Forms.DataGridViewTextBoxColumn Stock;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
