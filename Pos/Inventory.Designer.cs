@@ -1,4 +1,6 @@
-﻿namespace Pos
+﻿using System.Windows.Forms;
+
+namespace Pos
 {
     partial class Inventory
     {
@@ -28,6 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblProduct = new System.Windows.Forms.Label();
             this.cmbbxSelectProduct = new System.Windows.Forms.ComboBox();
             this.lblQuantity = new System.Windows.Forms.Label();
@@ -43,6 +46,8 @@
             this.btnAddInventory = new System.Windows.Forms.Button();
             this.cmbSize = new System.Windows.Forms.ComboBox();
             this.lblsize = new System.Windows.Forms.Label();
+            this.errorProviderQuantity = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderQuantity)).BeginInit();
             this.SuspendLayout();
             // 
             // lblProduct
@@ -100,10 +105,13 @@
             // 
             // txtbxQuantity
             // 
+            this.errorProviderQuantity.SetIconPadding(this.txtbxQuantity, 2);
             this.txtbxQuantity.Location = new System.Drawing.Point(111, 139);
             this.txtbxQuantity.Name = "txtbxQuantity";
             this.txtbxQuantity.Size = new System.Drawing.Size(100, 20);
             this.txtbxQuantity.TabIndex = 6;
+            this.txtbxQuantity.Validating += new System.ComponentModel.CancelEventHandler(this.txtbxQuantity_Validating);
+           
             // 
             // txtbxVendor
             // 
@@ -174,6 +182,12 @@
             this.lblsize.TabIndex = 13;
             this.lblsize.Text = "Size";
             // 
+            // errorProviderQuantity
+            // 
+            this.errorProviderQuantity.BlinkRate = 1000;
+            this.errorProviderQuantity.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errorProviderQuantity.ContainerControl = this;
+            // 
             // Inventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,8 +209,10 @@
             this.Controls.Add(this.cmbbxSelectProduct);
             this.Controls.Add(this.lblProduct);
             this.Name = "Inventory";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inventory";
             this.Load += new System.EventHandler(this.Inventory_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.errorProviderQuantity)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +235,8 @@
         private System.Windows.Forms.Button btnAddInventory;
         private System.Windows.Forms.ComboBox cmbSize;
         private System.Windows.Forms.Label lblsize;
+        private System.Windows.Forms.ErrorProvider errorProviderQuantity;
+
+
     }
 }

@@ -24,8 +24,19 @@ namespace Pos
 
         private void btnAddInventory_Click(object sender, EventArgs e)
         {
-            AddInventory();
-            updateproductquantity();
+            if (isValidated())
+            {
+                if (AddInventory() && updateproductquantity())
+                {
+                    MessageBox.Show("Inventory Inserted Successfully.");
+                    ResetForm();
+
+                }
+                else
+                {
+                    MessageBox.Show("Some error occurred,Pleae contact with administrator.");
+                }
+            }
         }
 
         private void Inventory_Load(object sender, EventArgs e)
@@ -53,9 +64,9 @@ namespace Pos
         {
             try
             {
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                string Query = "select * from `pos`.`product` where isactive=1;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                
+                string Query = "select ID,Name from `pos`.`product` where isactive=1;";
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -78,9 +89,9 @@ namespace Pos
         {
             try
             {
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                string Query = "select * from `pos`.`productstock` ;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+               
+                string Query = "select * from `pos`.`productstock`;";
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -96,18 +107,18 @@ namespace Pos
                 MessageBox.Show(ex.Message);
             }
         }
-        private void AddInventory()
+        private bool AddInventory()
         {
+            bool result = true;
             try
             {
-                //This is my connection string i have assigned the database file address path
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+             
                 //This is my insert query in which i am taking input from the user through windows forms
                 string Query = "insert into  `pos`.`productinventory`(ProductID,Quantity,Vendor,Description,DateTime,Number) values(" + this.txtbxPid.Text + "," + this.txtbxQuantity.Text + ",'" + this.txtbxVendor.Text + "','"
                     + txtbxDesc.Text + "','" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "'," + cmbSize.SelectedValue + ");";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
 
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MySqlDataReader MyReader2;
@@ -122,14 +133,15 @@ namespace Pos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                result = false;
             }
 
-
-
+            return result;
         }
 
-        private void updateproductquantity()
+        private bool updateproductquantity()
         {
+            bool result = true;
             try
             {
                 int totalquantity = Convert.ToInt32(txtbxStock.Text) + Convert.ToInt32(txtbxQuantity.Text);
@@ -154,8 +166,10 @@ namespace Pos
             }
             catch (Exception ex)
             {
+                result = false;
                 MessageBox.Show(ex.Message);
             }
+            return result;
         }
         private void cmbbxSelectProduct_SelectionChangeCommitted(object sender, EventArgs e)
         {
@@ -184,6 +198,71 @@ namespace Pos
             {
                 txtbxPid.Text = cmbbxSelectProduct.SelectedValue.ToString();
                 txtbxStock.Text = "0"; ;
+            }
+        }
+
+        void ResetForm()
+        {
+            dTableproductsstock.Reset();
+            load_product_stock();
+            var bindingSource1 = new BindingSource();
+            bindingSource1.DataSource = Program.productsizes;
+            cmbSize.DataSource = bindingSource1.DataSource;
+
+            DataRow[] filteredRows = dTableproductsstock.Select("ProductID = " + cmbbxSelectProduct.SelectedValue + " and Number = " + cmbSize.SelectedValue);
+            if (filteredRows.Length > 0)
+            {
+                txtbxPid.Text = filteredRows.FirstOrDefault()["ProductID"].ToString();
+                txtbxStock.Text = filteredRows.FirstOrDefault()["Quantity"].ToString();
+            }
+            else
+            {
+                txtbxPid.Text = cmbbxSelectProduct.SelectedValue.ToString();
+                txtbxStock.Text = "0"; ;
+            }
+
+            txtbxQuantity.Clear();
+        }
+
+
+        bool isValidated()
+        {
+            bool isvalidate = false;
+            int result;
+            if (string.IsNullOrWhiteSpace(txtbxQuantity.Text))
+            {
+
+                errorProviderQuantity.SetError(this.txtbxQuantity, "Quantity is required.");
+            }
+            else if (!Int32.TryParse(txtbxQuantity.Text, out result))
+            {
+
+                errorProviderQuantity.SetError(this.txtbxQuantity, "Quantity is not a valid number.");
+            }
+            else
+            {
+                isvalidate = true;
+                errorProviderQuantity.SetError(this.txtbxQuantity, String.Empty);
+            }
+            return isvalidate;
+        }
+
+        private void txtbxQuantity_Validating(object sender, CancelEventArgs e)
+        {
+            int result;
+            if (string.IsNullOrWhiteSpace(txtbxQuantity.Text))
+            {
+
+                errorProviderQuantity.SetError(this.txtbxQuantity, "Quantity is required.");
+            }
+            else if (!Int32.TryParse(txtbxQuantity.Text, out result))
+            {
+
+                errorProviderQuantity.SetError(this.txtbxQuantity, "Quantity is not a valid number.");
+            }
+            else
+            {
+                errorProviderQuantity.SetError(this.txtbxQuantity, String.Empty);
             }
         }
     }

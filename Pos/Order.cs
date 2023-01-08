@@ -37,9 +37,8 @@ namespace Pos
         {
             try
             {
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
                 string Query = "select * from `pos`.`product` where isactive=1;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -49,6 +48,8 @@ namespace Pos
                 cmbbxitem.DataSource = dTableproducts;
                 cmbbxitem.DisplayMember = "Name";
                 cmbbxitem.ValueMember = "id";
+                cmbbxitem.AutoCompleteMode = AutoCompleteMode.Suggest;
+                cmbbxitem.AutoCompleteSource = AutoCompleteSource.ListItems;
                 MyConn2.Close();
 
             }
@@ -62,9 +63,9 @@ namespace Pos
         {
             try
             {
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+               
                 string Query = "select * from `pos`.`productstock` ;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -83,42 +84,45 @@ namespace Pos
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            int ProductID = Convert.ToInt32(cmbbxitem.SelectedValue.ToString());
-            int Size = Convert.ToInt32(cmbbxSize.SelectedValue.ToString());
-            int Quantity = Convert.ToInt32(txtbxQuantity.Text);
-            int Stock = Convert.ToInt32(txtbxStock.Text);
-            KeyValuePair<int, int> Productkey = new KeyValuePair<int, int>(ProductID, Size);
-            if (!DictOrderDetails.ContainsKey(Productkey))
+            if (isValidated())
             {
-                if (Quantity <= Stock)
+                int ProductID = Convert.ToInt32(cmbbxitem.SelectedValue.ToString());
+                int Size = Convert.ToInt32(cmbbxSize.SelectedValue.ToString());
+                int Quantity = Convert.ToInt32(txtbxQuantity.Text);
+                int Stock = Convert.ToInt32(txtbxStock.Text);
+                KeyValuePair<int, int> Productkey = new KeyValuePair<int, int>(ProductID, Size);
+                if (!DictOrderDetails.ContainsKey(Productkey))
                 {
+                    if (Quantity <= Stock)
+                    {
 
-                    Double Total = Convert.ToDouble(txtbxPrice.Text) * Convert.ToDouble(txtbxQuantity.Text);
-                    dtgviewItems.Rows.Add(
-                        cmbbxitem.SelectedValue.ToString(),
-                        cmbbxitem.Text,
-                        txtbxPrice.Text,
-                         cmbbxSize.SelectedValue.ToString(),
-                        txtbxStock.Text,
-                        txtbxQuantity.Text,
-                        Total.ToString(),
-                        "Remove"
-                        );
-                    DictOrderDetails.Add(Productkey, new ProductDetails(Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
-                    btn_Submit.Enabled = true;
-                    TotalOrderSum += Total;
-                    txtbxTotal.Text = TotalOrderSum.ToString();
+                        Double Total = Convert.ToDouble(txtbxPrice.Text) * Convert.ToDouble(txtbxQuantity.Text);
+                        dtgviewItems.Rows.Add(
+                            cmbbxitem.SelectedValue.ToString(),
+                            cmbbxitem.Text,
+                            txtbxPrice.Text,
+                             cmbbxSize.SelectedValue.ToString(),
+                            txtbxStock.Text,
+                            txtbxQuantity.Text,
+                            Total.ToString(),
+                            "Remove"
+                            );
+                        DictOrderDetails.Add(Productkey, new ProductDetails(Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
+                        btn_Submit.Enabled = true;
+                        TotalOrderSum += Total;
+                        txtbxTotal.Text = TotalOrderSum.ToString();
 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Quantity is higher than stock.");
+
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Quantity is higher than stock.");
-
+                    MessageBox.Show("Item already added.");
                 }
-            }
-            else
-            {
-                MessageBox.Show("Item already added.");
             }
         }
 
@@ -184,12 +188,10 @@ namespace Pos
 
             try
             {
-                //This is my connection string i have assigned the database file address path
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                //This is my insert query in which i am taking input from the user through windows forms
+              
                 string Query = "insert into `pos`.`order`(Total,DateTime) values(" + this.txtbxTotal.Text + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MySqlDataReader MyReader2;
@@ -213,9 +215,9 @@ namespace Pos
             try
             {
                 DataTable mydt = new DataTable();
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+               
                 string Query = "select max(OrderID) as OrderID from `pos`.`order`";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -251,11 +253,8 @@ namespace Pos
                 Query = Query.Remove(Query.Length - 1, 1);
                 Query += ";";
                 Query += UpdateQuery;
-
-
-                //MessageBox.Show(Query);
-                //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+           
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MySqlDataReader MyReader2;
@@ -294,6 +293,44 @@ namespace Pos
             {
                 btnAdd.Enabled = false;
                 txtbxQuantity.Enabled = false;
+            }
+        }
+        bool isValidated()
+        {
+            bool isvalidate = false;
+            int result;
+            if (string.IsNullOrWhiteSpace(txtbxQuantity.Text))
+            {
+
+                errprvdr_quantity.SetError(this.txtbxQuantity, "Quantity is required.");
+            }
+            else if (!Int32.TryParse(txtbxQuantity.Text, out result))
+            {
+
+                errprvdr_quantity.SetError(this.txtbxQuantity, "Quantity is not a valid number.");
+            }
+            else
+            {
+                isvalidate = true;
+                errprvdr_quantity.SetError(this.txtbxQuantity, String.Empty);
+            }
+            return isvalidate;
+        }
+        private void txtbxQuantity_Validating(object sender, CancelEventArgs e)
+        {
+            int result;
+            if (string.IsNullOrWhiteSpace(txtbxQuantity.Text))
+            {
+                errprvdr_quantity.SetError(this.txtbxQuantity, "Quantity is required.");
+            }
+            else if (!Int32.TryParse(txtbxQuantity.Text, out result))
+            {
+
+                errprvdr_quantity.SetError(this.txtbxQuantity, "Quantity is not a valid number.");
+            }
+            else
+            {
+                errprvdr_quantity.SetError(this.txtbxQuantity, String.Empty);
             }
         }
     }

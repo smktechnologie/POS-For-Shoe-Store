@@ -28,9 +28,9 @@ namespace Pos
         {
             try
             {
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+              
                 string Query = "select username,password,isactive,isadmin ,datetime from `pos`.`users` where username like '%" + txtbx_name_search.Text + "%';";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
@@ -52,13 +52,11 @@ namespace Pos
 
             try
             {
-                //This is my connection string i have assigned the database file address path
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                //This is my insert query in which i am taking input from the user through windows forms
+               
                 string Query = "insert into  `pos`.`users`(username,password,isactive,isadmin,DateTime) values('" + this.txtbx_username.Text + "','" + this.txtbxpassword.Text + "'," + (chkbxactive.Checked ? "1" : "0") + ","
                     + (chkbxisadmin.Checked ? "1" : "0") + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MySqlDataReader MyReader2;
@@ -81,12 +79,10 @@ namespace Pos
         {
             try
             {
-                //This is my connection string i have assigned the database file address path
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                //This is my insert query in which i am taking input from the user through windows forms
+              
                 string Query = "update `pos`.`users` set username='" + txtbx_username.Text + "' ,password = '" + txtbxpassword.Text + "',isactive = " + (chkbxactive.Checked ? "1" : "0") + ",isadmin = " + (chkbxisadmin.Checked ? "1" : "0") + " where username = '" + selectedusername + "';";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MySqlDataReader MyReader2;
@@ -122,12 +118,9 @@ namespace Pos
         {
             try
             {
-                //This is my connection string i have assigned the database file address path
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                //This is my insert query in which i am taking input from the user through windows forms
                 string Query = "Delete from `pos`.`users` where username = '" + selectedusername + "';";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MySqlDataReader MyReader2;

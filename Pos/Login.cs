@@ -39,6 +39,8 @@ namespace Pos
             else
             {
                 MessageBox.Show("Incorrect username or password.");
+                txtbxpassword.Clear();
+                txtbxUserName.Clear();
             }
         }
 
@@ -50,9 +52,9 @@ namespace Pos
             try
             {
 
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+           
                 string Query = "select username,isadmin from `pos`.`users` where username = '" + txtbxUserName.Text + "' and password='" + txtbxpassword.Text + "' and isactive=1;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();

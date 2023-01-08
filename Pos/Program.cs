@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace Pos
 
     internal static class Program
     {
+        public static string dbconnectionstring = string.Empty;
         public static List<int> productsizes = new List<int>();
         /// <summary>
         /// The main entry point for the application.
@@ -36,6 +38,9 @@ namespace Pos
         [STAThread]
         static void Main()
         {
+            System.Configuration.Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+            dbconnectionstring = config.AppSettings.Settings["DBConnectionString"].Value;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             load_data();
@@ -58,9 +63,9 @@ namespace Pos
         {
             try
             {
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
+               
                 string Query = "select * from `pos`.`size`;";
-                MySqlConnection MyConn2 = new MySqlConnection(MyConnection2);
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
                 MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
