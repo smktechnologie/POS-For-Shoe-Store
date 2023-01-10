@@ -25,18 +25,6 @@ C:\POS\POS\obj\Debug\Pos.pdb
 C:\POS\POS\obj\Debug\Pos.Expense.resources
 C:\POS\POS\obj\Debug\Pos.Inventory.resources
 C:\POS\POS\obj\Debug\Pos.Order.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.AssemblyReference.cache
-C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.SuggestedBindingRedirects.cache
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Expense.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Inventory.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Order.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Product.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Home.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Properties.Resources.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.GenerateResource.cache
-C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CoreCompileInputs.cache
-C:\POS GIT\POS\Pos\obj\Debug\Pos.exe
-C:\POS GIT\POS\Pos\obj\Debug\Pos.pdb
 C:\POS GIT\POS\Pos\bin\Debug\Pos.exe.config
 C:\POS GIT\POS\Pos\bin\Debug\Pos.exe
 C:\POS GIT\POS\Pos\bin\Debug\Pos.pdb
@@ -50,8 +38,21 @@ C:\POS GIT\POS\Pos\bin\Debug\System.Buffers.dll
 C:\POS GIT\POS\Pos\bin\Debug\K4os.Compression.LZ4.dll
 C:\POS GIT\POS\Pos\bin\Debug\K4os.Hash.xxHash.dll
 C:\POS GIT\POS\Pos\bin\Debug\MySql.Data.xml
+C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.AssemblyReference.cache
+C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.SuggestedBindingRedirects.cache
 C:\POS GIT\POS\Pos\obj\Debug\Pos.exe.config
-C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CopyComplete
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Login.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.User.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Accounts.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Expense.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.HomeUser.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Inventory.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Login.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Order.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Product.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Home.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Properties.Resources.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.User.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.GenerateResource.cache
+C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CoreCompileInputs.cache
+C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CopyComplete
+C:\POS GIT\POS\Pos\obj\Debug\Pos.exe
+C:\POS GIT\POS\Pos\obj\Debug\Pos.pdb

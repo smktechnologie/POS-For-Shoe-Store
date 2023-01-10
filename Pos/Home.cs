@@ -126,5 +126,28 @@ namespace Pos
 
             }
         }
+
+        private void accountsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Accounts")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                Accounts f2 = new Accounts();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+
+        }
     }
 }
