@@ -56,3 +56,4 @@ C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CoreCompileInputs.cache
 C:\POS GIT\POS\Pos\obj\Debug\Pos.csproj.CopyComplete
 C:\POS GIT\POS\Pos\obj\Debug\Pos.exe
 C:\POS GIT\POS\Pos\obj\Debug\Pos.pdb
+C:\POS GIT\POS\Pos\obj\Debug\Pos.AccountTransaction.resources

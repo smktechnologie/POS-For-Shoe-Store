@@ -93,7 +93,7 @@ namespace Pos
             {
                 MessageBox.Show(ex.Message);
             }
-            load_data();
+            load_data(); 
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
