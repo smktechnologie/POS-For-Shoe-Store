@@ -127,28 +127,6 @@ namespace Pos
             }
         }
 
-        private void accountsToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            bool IsOpen = false;
-            foreach (Form f in Application.OpenForms)
-            {
-                if (f.Text == "Accounts")
-                {
-                    IsOpen = true;
-                    f.Focus();
-                    break;
-                }
-            }
-
-            if (!IsOpen)
-            {
-                Accounts f2 = new Accounts();
-                f2.MdiParent = this;
-                f2.Show();
-
-            }
-
-        }
 
         private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -171,6 +149,50 @@ namespace Pos
 
             }
 
+        }
+
+        private void manageAccountsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Accounts")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                Accounts f2 = new Accounts();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
+
+        private void viewTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "View Transations")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                ViewTransations f2 = new ViewTransations();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
         }
     }
 }

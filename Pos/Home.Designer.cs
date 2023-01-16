@@ -36,7 +36,9 @@
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sellToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,11 +102,19 @@
             // accountsToolStripMenuItem
             // 
             this.accountsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.transactionsToolStripMenuItem});
+            this.manageAccountsToolStripMenuItem,
+            this.transactionsToolStripMenuItem,
+            this.viewTransactionsToolStripMenuItem});
             this.accountsToolStripMenuItem.Name = "accountsToolStripMenuItem";
             this.accountsToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
             this.accountsToolStripMenuItem.Text = "Accounts";
-            this.accountsToolStripMenuItem.Click += new System.EventHandler(this.accountsToolStripMenuItem_Click);
+            // 
+            // manageAccountsToolStripMenuItem
+            // 
+            this.manageAccountsToolStripMenuItem.Name = "manageAccountsToolStripMenuItem";
+            this.manageAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageAccountsToolStripMenuItem.Text = "Manage Accounts";
+            this.manageAccountsToolStripMenuItem.Click += new System.EventHandler(this.manageAccountsToolStripMenuItem_Click);
             // 
             // transactionsToolStripMenuItem
             // 
@@ -112,6 +122,13 @@
             this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.transactionsToolStripMenuItem.Text = "Transactions";
             this.transactionsToolStripMenuItem.Click += new System.EventHandler(this.transactionsToolStripMenuItem_Click);
+            // 
+            // viewTransactionsToolStripMenuItem
+            // 
+            this.viewTransactionsToolStripMenuItem.Name = "viewTransactionsToolStripMenuItem";
+            this.viewTransactionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewTransactionsToolStripMenuItem.Text = "View Transactions";
+            this.viewTransactionsToolStripMenuItem.Click += new System.EventHandler(this.viewTransactionsToolStripMenuItem_Click);
             // 
             // Home
             // 
@@ -142,5 +159,7 @@
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem accountsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageAccountsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewTransactionsToolStripMenuItem;
     }
 }

@@ -93,12 +93,6 @@
     <Compile Include="Order.Designer.cs">
       <DependentUpon>Order.cs</DependentUpon>
     </Compile>
-    <Compile Include="PrintTest.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PrintTest.Designer.cs">
-      <DependentUpon>PrintTest.cs</DependentUpon>
-    </Compile>
     <Compile Include="Product.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +112,12 @@
     </Compile>
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewTransations.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewTransations.Designer.cs">
+      <DependentUpon>ViewTransations.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Account.resx">
       <DependentUpon>Account.cs</DependentUpon>
@@ -140,9 +140,6 @@
     <EmbeddedResource Include="Order.resx">
       <DependentUpon>Order.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PrintTest.resx">
-      <DependentUpon>PrintTest.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Product.resx">
       <DependentUpon>Product.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +157,9 @@
     </Compile>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewTransations.resx">
+      <DependentUpon>ViewTransations.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

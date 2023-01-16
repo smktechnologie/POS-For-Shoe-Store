@@ -251,9 +251,7 @@ namespace Pos
         {
             try
             {
-                //This is my connection string i have assigned the database file address path
-                string MyConnection2 = "datasource=localhost;port=3306;username=root;password=Password@11";
-                //This is my insert query in which i am taking input from the user through windows forms
+               
                 string Query = "insert into `pos`.`orderdetail`(OrderID,ProductID,Price,size,Quantity,Total) values";
                 string UpdateQuery = string.Empty;
                 foreach (var item in DictOrderDetails)
@@ -364,9 +362,7 @@ namespace Pos
                 graphics.DrawString("Shabana Foot Wear Store ", new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), startX + 45, startY + Offset);
                 Offset = Offset + 15;
                 graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
-                double tAmount = 0;
-                double gTotal = 0;
-                string xParent = "*";
+               
                 Offset = Offset + 15;
                 graphics.DrawString("Name", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
                 graphics.DrawString("Quantity", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 130, startY + Offset);

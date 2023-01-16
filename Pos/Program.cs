@@ -43,7 +43,7 @@ namespace Pos
             dbconnectionstring = config.AppSettings.Settings["DBConnectionString"].Value;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            load_data();
+            /*load_data();
             Login frmlogin = new Login();
 
             Application.Run(frmlogin);
@@ -55,8 +55,8 @@ namespace Pos
             else if (frmlogin.UserSuccessfullyAuthenticated)
             {
                 Application.Run(new HomeUser());
-            }
-            // Application.Run(new PrintTest());
+            }*/
+             Application.Run(new ViewTransations());
         }
 
         private static void load_data()
