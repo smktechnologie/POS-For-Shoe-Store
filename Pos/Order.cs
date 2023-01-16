@@ -1,9 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -63,7 +65,7 @@ namespace Pos
         {
             try
             {
-               
+
                 string Query = "select * from `pos`.`productstock` ;";
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
@@ -180,6 +182,15 @@ namespace Pos
             int OrderID = getOrderID();
             insertOrderDetails(OrderID);
             MessageBox.Show("Order Submitted Successfully,Order ID : " + OrderID.ToString());
+
+
+            PaperSize psize = new PaperSize("Custom", 100, 30000);
+
+            printDocument1.DefaultPageSettings.PaperSize = psize;
+            printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
+            printDocument1.DefaultPageSettings.PaperSize.Width = 520;
+            printDocument1.Print();
+
             this.Close();
         }
 
@@ -188,7 +199,7 @@ namespace Pos
 
             try
             {
-              
+
                 string Query = "insert into `pos`.`order`(Total,DateTime) values(" + this.txtbxTotal.Text + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
@@ -215,7 +226,7 @@ namespace Pos
             try
             {
                 DataTable mydt = new DataTable();
-               
+
                 string Query = "select max(OrderID) as OrderID from `pos`.`order`";
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
@@ -253,7 +264,7 @@ namespace Pos
                 Query = Query.Remove(Query.Length - 1, 1);
                 Query += ";";
                 Query += UpdateQuery;
-           
+
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
@@ -331,6 +342,58 @@ namespace Pos
             else
             {
                 errprvdr_quantity.SetError(this.txtbxQuantity, String.Empty);
+            }
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            try
+            {
+                //-----------
+                Graphics graphics = e.Graphics;
+                Font font = new Font("calibri", 10);
+                float fontHeight = font.GetHeight();
+                String underLine = "-------------------------------------------------------------";
+                int startX = 10;
+                int startY = 0;
+                int Offset = 0;
+                //  Offset += 0;
+                // Offset = Offset + 15;
+                graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("Shabana Foot Wear Store ", new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), startX + 45, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
+                double tAmount = 0;
+                double gTotal = 0;
+                string xParent = "*";
+                Offset = Offset + 15;
+                graphics.DrawString("Name", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString("Quantity", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 130, startY + Offset);
+                graphics.DrawString("Price", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                Offset = Offset + 15;
+                for (int i = 0; i < 2; i++)
+                {
+                    string item = (i + 1) + " - " + "Name " + i.ToString();
+                    string quantity = i.ToString();
+                    graphics.DrawString(item, new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
+                    graphics.DrawString(quantity, new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 130, startY + Offset);
+                    graphics.DrawString((i * 100).ToString(), new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                    Offset = Offset + 15;
+                }
+                graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("Total", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString("20000", new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("Print Time :  " + DateTime.Now.ToString("d, MMMM, yyyy. hh:mm - tt "), new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 15;
+
+                graphics.DrawString("By : SMK Technologies", new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
     }

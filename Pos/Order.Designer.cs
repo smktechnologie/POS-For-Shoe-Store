@@ -53,6 +53,7 @@
             this.cmbbxSize = new System.Windows.Forms.ComboBox();
             this.lblSize = new System.Windows.Forms.Label();
             this.errprvdr_quantity = new System.Windows.Forms.ErrorProvider(this.components);
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errprvdr_quantity)).BeginInit();
             this.SuspendLayout();
@@ -271,6 +272,10 @@
             this.errprvdr_quantity.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
             this.errprvdr_quantity.ContainerControl = this;
             // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -326,5 +331,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Total;
         private System.Windows.Forms.DataGridViewLinkColumn Remove;
         private System.Windows.Forms.ErrorProvider errprvdr_quantity;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

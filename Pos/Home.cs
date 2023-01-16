@@ -149,5 +149,28 @@ namespace Pos
             }
 
         }
+
+        private void transactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "AccountTransaction")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                AccountTransaction f2 = new AccountTransaction();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+
+        }
     }
 }
