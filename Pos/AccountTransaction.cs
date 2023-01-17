@@ -90,7 +90,7 @@ namespace Pos
             try
             {
                 double NewBalance = SelectedBalance - Convert.ToDouble(txtbxAmount.Text);
-                string Query = "update `pos`.`account` set Balance ='" + NewBalance + "' where id = " + cmbbxAccount.SelectedValue.ToString() + ";";
+                string Query = "update `pos`.`account` set Balance =" + NewBalance + "'where id = " + cmbbxAccount.SelectedValue.ToString() + ";";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.

@@ -30,10 +30,40 @@ namespace Pos
         {
             load_Products();
             load_product_stock();
+            load_Customers();
             var bindingSource1 = new BindingSource();
             bindingSource1.DataSource = Program.productsizes;
             cmbbxSize.DataSource = bindingSource1.DataSource;
         }
+
+        private void load_Customers()
+        {
+            try
+            {
+                DataTable customers = new DataTable();
+                string Query = "select ID,Name from `pos`.`account` where Type = 'Customer' and isactive=1;";
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                MyConn2.Open();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
+
+                MyAdapter.Fill(customers);
+                cmbbx_CustomerAcc.DataSource = customers;
+                cmbbx_CustomerAcc.DisplayMember = "Name";
+                cmbbx_CustomerAcc.ValueMember = "ID";
+                /* cmbbxitem.AutoCompleteMode = AutoCompleteMode.Suggest;
+                 cmbbxitem.AutoCompleteSource = AutoCompleteSource.ListItems;*/
+                MyConn2.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
 
         private void load_Products()
         {
@@ -113,6 +143,8 @@ namespace Pos
                         btn_Submit.Enabled = true;
                         TotalOrderSum += Total;
                         txtbxTotal.Text = TotalOrderSum.ToString();
+                        txtNetTotal.Text = TotalOrderSum.ToString();
+                        txtremaining.Text = TotalOrderSum.ToString();
 
                     }
                     else
@@ -169,6 +201,8 @@ namespace Pos
                 DictOrderDetails.Remove(Productkey);
                 TotalOrderSum = TotalOrderSum - pd.Total;
                 txtbxTotal.Text = TotalOrderSum.ToString();
+                txtNetTotal.Text = TotalOrderSum.ToString();
+                txtremaining.Text = TotalOrderSum.ToString();
                 if (DictOrderDetails.Count <= 0)
                 {
                     btn_Submit.Enabled = false;
@@ -190,17 +224,21 @@ namespace Pos
             printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
             printDocument1.DefaultPageSettings.PaperSize.Width = 520;
             printDocument1.Print();
-
             this.Close();
         }
 
         void insertOrder()
         {
-
             try
             {
-
-                string Query = "insert into `pos`.`order`(Total,DateTime) values(" + this.txtbxTotal.Text + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
+                string Query = "insert into `pos`.`order`(CustomerAccountID,Total,Discount,NetTotal,Paid,Remaining,DateTime) values("
+                    + this.cmbbx_CustomerAcc.SelectedValue.ToString() + ","
+                    + this.txtbxTotal.Text + ","
+                    + this.txtbxDiscount.Text + ","
+                    + this.txtNetTotal.Text + ","
+                    + this.txtbxpaid.Text + ","
+                    + this.txtremaining.Text + ",'"
+                    + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
@@ -251,7 +289,10 @@ namespace Pos
         {
             try
             {
-               
+                double NetAmount = string.IsNullOrWhiteSpace(txtNetTotal.Text) ? 0.0 : double.Parse(txtNetTotal.Text);
+                double PaidAmount = string.IsNullOrWhiteSpace(txtbxpaid.Text) ? 0.0 : double.Parse(txtbxpaid.Text);
+                double RemainingAmount = string.IsNullOrWhiteSpace(txtremaining.Text) ? 0.0 : double.Parse(txtremaining.Text);
+
                 string Query = "insert into `pos`.`orderdetail`(OrderID,ProductID,Price,size,Quantity,Total) values";
                 string UpdateQuery = string.Empty;
                 foreach (var item in DictOrderDetails)
@@ -262,6 +303,17 @@ namespace Pos
                 Query = Query.Remove(Query.Length - 1, 1);
                 Query += ";";
                 Query += UpdateQuery;
+                Query += "insert into  `pos`.`accounttransactions`(AccountID,Invoice,BillType,NetAmount,PaidAmount,RemainingAmount,DateTime) values("
+                    + cmbbx_CustomerAcc.SelectedValue.ToString() + ","
+                    + OrderID.ToString() + ",'Selling',"
+                    + NetAmount + ","
+                    + PaidAmount + ","
+                    + RemainingAmount + ",'"
+                    + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
+                if (RemainingAmount > 0.0)
+                {
+                    Query += "update `pos`.`account` set Balance = Balance + " + RemainingAmount + " where id = " + cmbbx_CustomerAcc.SelectedValue.ToString() + ";";
+                }
 
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
@@ -362,7 +414,7 @@ namespace Pos
                 graphics.DrawString("Shabana Foot Wear Store ", new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), startX + 45, startY + Offset);
                 Offset = Offset + 15;
                 graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
-               
+
                 Offset = Offset + 15;
                 graphics.DrawString("Name", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
                 graphics.DrawString("Quantity", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 130, startY + Offset);
@@ -390,6 +442,64 @@ namespace Pos
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void txtbxDiscount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtbxpaid_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtbxDiscount_TextChanged(object sender, EventArgs e)
+        {
+            if (txtbxDiscount.Text.Length > 0)
+            {
+                txtNetTotal.Text = (Double.Parse(txtbxTotal.Text) - Double.Parse(txtbxDiscount.Text)).ToString();
+            }
+            else
+            {
+                txtNetTotal.Text = txtbxTotal.Text;
+
+
+            }
+        }
+
+        private void txtbxpaid_TextChanged(object sender, EventArgs e)
+        {
+            if (txtbxpaid.Text.Length > 0)
+            {
+                txtremaining.Text = (Double.Parse(txtNetTotal.Text) - Double.Parse(txtbxpaid.Text)).ToString();
+            }
+            else
+            {
+                txtremaining.Text = txtNetTotal.Text;
+
+
             }
         }
     }

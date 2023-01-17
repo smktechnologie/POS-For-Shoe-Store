@@ -54,6 +54,16 @@
             this.lblSize = new System.Windows.Forms.Label();
             this.errprvdr_quantity = new System.Windows.Forms.ErrorProvider(this.components);
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.txtbxDiscount = new System.Windows.Forms.TextBox();
+            this.lblDiscount = new System.Windows.Forms.Label();
+            this.txtNetTotal = new System.Windows.Forms.TextBox();
+            this.lblNetTotal = new System.Windows.Forms.Label();
+            this.txtbxpaid = new System.Windows.Forms.TextBox();
+            this.lblpaid = new System.Windows.Forms.Label();
+            this.txtremaining = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lblcustomer = new System.Windows.Forms.Label();
+            this.cmbbx_CustomerAcc = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errprvdr_quantity)).BeginInit();
             this.SuspendLayout();
@@ -61,7 +71,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(665, 71);
+            this.label1.Location = new System.Drawing.Point(691, 122);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 1;
@@ -70,7 +80,7 @@
             // txtbxTotal
             // 
             this.txtbxTotal.Enabled = false;
-            this.txtbxTotal.Location = new System.Drawing.Point(741, 68);
+            this.txtbxTotal.Location = new System.Drawing.Point(790, 119);
             this.txtbxTotal.Name = "txtbxTotal";
             this.txtbxTotal.Size = new System.Drawing.Size(100, 20);
             this.txtbxTotal.TabIndex = 2;
@@ -78,7 +88,7 @@
             // btn_Submit
             // 
             this.btn_Submit.Enabled = false;
-            this.btn_Submit.Location = new System.Drawing.Point(668, 105);
+            this.btn_Submit.Location = new System.Drawing.Point(706, 281);
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.Size = new System.Drawing.Size(173, 23);
             this.btn_Submit.TabIndex = 3;
@@ -276,11 +286,112 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
+            // txtbxDiscount
+            // 
+            this.txtbxDiscount.Location = new System.Drawing.Point(790, 145);
+            this.txtbxDiscount.Name = "txtbxDiscount";
+            this.txtbxDiscount.Size = new System.Drawing.Size(100, 20);
+            this.txtbxDiscount.TabIndex = 18;
+            this.txtbxDiscount.Text = "0";
+            this.txtbxDiscount.TextChanged += new System.EventHandler(this.txtbxDiscount_TextChanged);
+            this.txtbxDiscount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxDiscount_KeyPress);
+            // 
+            // lblDiscount
+            // 
+            this.lblDiscount.AutoSize = true;
+            this.lblDiscount.Location = new System.Drawing.Point(693, 148);
+            this.lblDiscount.Name = "lblDiscount";
+            this.lblDiscount.Size = new System.Drawing.Size(49, 13);
+            this.lblDiscount.TabIndex = 17;
+            this.lblDiscount.Text = "Discount";
+            // 
+            // txtNetTotal
+            // 
+            this.txtNetTotal.Enabled = false;
+            this.txtNetTotal.Location = new System.Drawing.Point(790, 174);
+            this.txtNetTotal.Name = "txtNetTotal";
+            this.txtNetTotal.Size = new System.Drawing.Size(100, 20);
+            this.txtNetTotal.TabIndex = 20;
+            // 
+            // lblNetTotal
+            // 
+            this.lblNetTotal.AutoSize = true;
+            this.lblNetTotal.Location = new System.Drawing.Point(693, 177);
+            this.lblNetTotal.Name = "lblNetTotal";
+            this.lblNetTotal.Size = new System.Drawing.Size(51, 13);
+            this.lblNetTotal.TabIndex = 19;
+            this.lblNetTotal.Tag = "";
+            this.lblNetTotal.Text = "Net Total";
+            // 
+            // txtbxpaid
+            // 
+            this.txtbxpaid.Location = new System.Drawing.Point(790, 200);
+            this.txtbxpaid.Name = "txtbxpaid";
+            this.txtbxpaid.Size = new System.Drawing.Size(100, 20);
+            this.txtbxpaid.TabIndex = 22;
+            this.txtbxpaid.Text = "0";
+            this.txtbxpaid.TextChanged += new System.EventHandler(this.txtbxpaid_TextChanged);
+            this.txtbxpaid.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxpaid_KeyPress);
+            // 
+            // lblpaid
+            // 
+            this.lblpaid.AutoSize = true;
+            this.lblpaid.Location = new System.Drawing.Point(693, 203);
+            this.lblpaid.Name = "lblpaid";
+            this.lblpaid.Size = new System.Drawing.Size(31, 13);
+            this.lblpaid.TabIndex = 21;
+            this.lblpaid.Text = "Paid ";
+            // 
+            // txtremaining
+            // 
+            this.txtremaining.Enabled = false;
+            this.txtremaining.Location = new System.Drawing.Point(790, 226);
+            this.txtremaining.Name = "txtremaining";
+            this.txtremaining.Size = new System.Drawing.Size(100, 20);
+            this.txtremaining.TabIndex = 24;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(693, 229);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 13);
+            this.label3.TabIndex = 23;
+            this.label3.Tag = "";
+            this.label3.Text = "Remaining";
+            // 
+            // lblcustomer
+            // 
+            this.lblcustomer.AutoSize = true;
+            this.lblcustomer.Location = new System.Drawing.Point(691, 96);
+            this.lblcustomer.Name = "lblcustomer";
+            this.lblcustomer.Size = new System.Drawing.Size(94, 13);
+            this.lblcustomer.TabIndex = 25;
+            this.lblcustomer.Text = "Customer Account";
+            // 
+            // cmbbx_CustomerAcc
+            // 
+            this.cmbbx_CustomerAcc.FormattingEnabled = true;
+            this.cmbbx_CustomerAcc.Location = new System.Drawing.Point(790, 93);
+            this.cmbbx_CustomerAcc.Name = "cmbbx_CustomerAcc";
+            this.cmbbx_CustomerAcc.Size = new System.Drawing.Size(100, 21);
+            this.cmbbx_CustomerAcc.TabIndex = 26;
+            // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(846, 450);
+            this.ClientSize = new System.Drawing.Size(925, 450);
+            this.Controls.Add(this.cmbbx_CustomerAcc);
+            this.Controls.Add(this.lblcustomer);
+            this.Controls.Add(this.txtremaining);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtbxpaid);
+            this.Controls.Add(this.lblpaid);
+            this.Controls.Add(this.txtNetTotal);
+            this.Controls.Add(this.lblNetTotal);
+            this.Controls.Add(this.txtbxDiscount);
+            this.Controls.Add(this.lblDiscount);
             this.Controls.Add(this.cmbbxSize);
             this.Controls.Add(this.lblSize);
             this.Controls.Add(this.btnAdd);
@@ -332,5 +443,15 @@
         private System.Windows.Forms.DataGridViewLinkColumn Remove;
         private System.Windows.Forms.ErrorProvider errprvdr_quantity;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.TextBox txtbxDiscount;
+        private System.Windows.Forms.Label lblDiscount;
+        private System.Windows.Forms.TextBox txtNetTotal;
+        private System.Windows.Forms.Label lblNetTotal;
+        private System.Windows.Forms.TextBox txtremaining;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox txtbxpaid;
+        private System.Windows.Forms.Label lblpaid;
+        private System.Windows.Forms.Label lblcustomer;
+        private System.Windows.Forms.ComboBox cmbbx_CustomerAcc;
     }
 }
