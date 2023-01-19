@@ -87,9 +87,9 @@
             this.lblPurchase.AutoSize = true;
             this.lblPurchase.Location = new System.Drawing.Point(707, 91);
             this.lblPurchase.Name = "lblPurchase";
-            this.lblPurchase.Size = new System.Drawing.Size(94, 13);
+            this.lblPurchase.Size = new System.Drawing.Size(98, 13);
             this.lblPurchase.TabIndex = 50;
-            this.lblPurchase.Text = "Customer Account";
+            this.lblPurchase.Text = "Purchaser Account";
             // 
             // txtremaining
             // 

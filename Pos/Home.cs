@@ -194,5 +194,27 @@ namespace Pos
 
             }
         }
+
+        private void payrollToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Payroll")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                Payroll f2 = new Payroll();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
     }
 }

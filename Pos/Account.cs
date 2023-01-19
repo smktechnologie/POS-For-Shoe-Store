@@ -18,11 +18,25 @@ namespace Pos
             load_data();
         }
 
+        void ClearForm()
+        {
+            btn_add.Enabled = true;
+            btnDelete.Enabled = false;
+            btnupdate.Enabled = false;
+            txtbx_sal.Clear();
+            txtAccID.Clear();
+            txtbxbalance.Clear();
+            txtbxPhone.Clear();
+            txtbx_address.Clear();
+            txtbx_aname.Clear();
+            cmbbxtype.Enabled = true;
+        }
+
         private void load_data()
         {
             try
             {
-                string Query = "select ID,Name,Type,Balance,Address,Phone from `pos`.`account` where name like '%" + txtbx_aname_search.Text + "%' and Type = '" + cmbbxtypesrch.SelectedItem + "' and isactive=1;";
+                string Query = "select ID,Name,Type,Balance,Address,Phone,Salary from `pos`.`account` where name like '%" + txtbx_aname_search.Text + "%' and Type = '" + cmbbxtypesrch.SelectedItem + "' and isactive=1;";
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
                 MyConn2.Open();
@@ -82,14 +96,33 @@ namespace Pos
                 MessageBox.Show(ex.Message);
             }
             load_data();
+            ClearForm();
         }
 
         private void btnupdate_Click(object sender, EventArgs e)
         {
             try
             {
+                double balance = 0.0;
+                int salary = 0;
+                if (cmbbxtype.SelectedItem.ToString() == "Employee")
+                {
+                    if (!string.IsNullOrWhiteSpace(txtbx_sal.Text))
+                        salary = Convert.ToInt32(txtbx_sal.Text);
+                    else
+                    {
+                        MessageBox.Show("Salary cannot be empty");
+                        return;
+                    }
 
-                string Query = "update `pos`.`account` set Name='" + txtbx_aname.Text + "' ,Address = '" + txtbx_address.Text + "',Phone = " + txtbxPhone.Text + " where id = " + txtAccID.Text + ";";
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtbxbalance.Text))
+                    balance = Convert.ToInt32(txtbxbalance.Text);
+
+
+                string Query = "update `pos`.`account` set Name='" + txtbx_aname.Text + "' ,Address = '" + txtbx_address.Text + "',Phone = '" + txtbxPhone.Text + "', Balance = " + balance.ToString() +
+                    ",Salary = " + salary.ToString() + " where id = " + txtAccID.Text + ";";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
@@ -108,6 +141,7 @@ namespace Pos
                 MessageBox.Show(ex.Message);
             }
             load_data();
+            ClearForm();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -136,6 +170,7 @@ namespace Pos
                 MessageBox.Show(ex.Message);
             }
             load_data();
+            ClearForm();
         }
 
         private void dg_account_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -149,10 +184,11 @@ namespace Pos
                 txtbxbalance.Text = dgrow.Cells[3].Value.ToString();
                 txtbx_address.Text = dgrow.Cells[4].Value.ToString();
                 txtbxPhone.Text = dgrow.Cells[5].Value.ToString();
-
+                txtbx_sal.Text = dgrow.Cells[6].Value.ToString();
                 cmbbxtype.Enabled = false;
-                txtbxbalance.Enabled = false;
                 btn_add.Enabled = false;
+                btnupdate.Enabled = true;
+                btnDelete.Enabled = true;
 
             }
         }
@@ -213,6 +249,11 @@ namespace Pos
             {
                 e.Handled = true;
             }
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            ClearForm();
         }
     }
 }

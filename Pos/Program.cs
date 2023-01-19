@@ -62,7 +62,7 @@ namespace Pos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             load_data();
-            /*Login frmlogin = new Login();
+            Login frmlogin = new Login();
 
             Application.Run(frmlogin);
 
@@ -73,8 +73,8 @@ namespace Pos
             else if (frmlogin.UserSuccessfullyAuthenticated)
             {
                 Application.Run(new HomeUser());
-            }*/
-            Application.Run(new Accounts());
+            }
+            //Application.Run(new Payroll());
         }
 
         private static void load_data()

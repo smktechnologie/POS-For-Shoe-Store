@@ -51,6 +51,7 @@
             this.txtbxPhone = new System.Windows.Forms.TextBox();
             this.lblSalary = new System.Windows.Forms.Label();
             this.txtbx_sal = new System.Windows.Forms.TextBox();
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg_account)).BeginInit();
             this.SuspendLayout();
             // 
@@ -265,11 +266,22 @@
             this.txtbx_sal.TabIndex = 36;
             this.txtbx_sal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_sal_KeyPress);
             // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(341, 216);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 38;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
             // Accounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 271);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblSalary);
             this.Controls.Add(this.txtbx_sal);
             this.Controls.Add(this.lblphn);
@@ -327,5 +339,6 @@
         private System.Windows.Forms.TextBox txtbxPhone;
         private System.Windows.Forms.Label lblSalary;
         private System.Windows.Forms.TextBox txtbx_sal;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
