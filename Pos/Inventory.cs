@@ -38,9 +38,35 @@ namespace Pos
                 }
             }
         }
+        private void load_Vendors()
+        {
+            try
+            {
+                DataTable customers = new DataTable();
+                string Query = "select ID,Name from `pos`.`account` where Type = 'Purchase' and isactive=1;";
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                MyConn2.Open();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
 
+                MyAdapter.Fill(customers);
+                cmbbx_vendorAcc.DataSource = customers;
+                cmbbx_vendorAcc.DisplayMember = "Name";
+                cmbbx_vendorAcc.ValueMember = "ID";
+                /* cmbbxitem.AutoCompleteMode = AutoCompleteMode.Suggest;
+                 cmbbxitem.AutoCompleteSource = AutoCompleteSource.ListItems;*/
+                MyConn2.Close();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void Inventory_Load(object sender, EventArgs e)
         {
+            load_Vendors();
             load_Products();
             load_product_stock();
             var bindingSource1 = new BindingSource();

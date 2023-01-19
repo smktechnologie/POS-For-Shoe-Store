@@ -1,12 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+using System.Configuration;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pos
@@ -49,7 +44,26 @@ namespace Pos
         {
             try
             {
-                string Query = "insert into  `pos`.`account`(Name,Type,Phone,Address,Balance,DateTime) values('" + this.txtbx_aname.Text + "','" + cmbbxtype.SelectedItem + "','" + txtbxPhone.Text + "','" + txtbx_address.Text + "'," + txtbxbalance.Text + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
+                double balance = 0.0;
+                int salary = 0;
+                if (cmbbxtype.SelectedItem.ToString() == "Employee")
+                {
+                    if (!string.IsNullOrWhiteSpace(txtbx_sal.Text))
+                        salary = Convert.ToInt32(txtbx_sal.Text);
+                    else
+                    {
+                        MessageBox.Show("Salary cannot be empty");
+                        return;
+                    }
+
+                }
+
+                if (!string.IsNullOrWhiteSpace(txtbxbalance.Text))
+                    balance = Convert.ToInt32(txtbxbalance.Text);
+
+
+
+                string Query = "insert into  `pos`.`account`(Name,Type,Phone,Address,Balance,Salary,DateTime) values('" + this.txtbx_aname.Text + "','" + cmbbxtype.SelectedItem + "','" + txtbxPhone.Text + "','" + txtbx_address.Text + "'," + balance.ToString() + "," + salary.ToString() + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
@@ -93,7 +107,7 @@ namespace Pos
             {
                 MessageBox.Show(ex.Message);
             }
-            load_data(); 
+            load_data();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -146,6 +160,59 @@ namespace Pos
         private void Account_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmbbxtype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbbxtype.SelectedItem.ToString() == "Employee")
+                txtbx_sal.Enabled = true;
+            else
+                txtbx_sal.Enabled = false;
+        }
+
+        private void txtbx_sal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtbxbalance_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtbxPhone_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

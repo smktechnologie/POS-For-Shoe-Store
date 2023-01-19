@@ -49,6 +49,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblphn = new System.Windows.Forms.Label();
             this.txtbxPhone = new System.Windows.Forms.TextBox();
+            this.lblSalary = new System.Windows.Forms.Label();
+            this.txtbx_sal = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dg_account)).BeginInit();
             this.SuspendLayout();
             // 
@@ -67,10 +69,11 @@
             this.txtbxbalance.Name = "txtbxbalance";
             this.txtbxbalance.Size = new System.Drawing.Size(100, 20);
             this.txtbxbalance.TabIndex = 26;
+            this.txtbxbalance.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxbalance_KeyPress);
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(178, 189);
+            this.btnDelete.Location = new System.Drawing.Point(176, 209);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 25;
@@ -80,7 +83,7 @@
             // 
             // btnupdate
             // 
-            this.btnupdate.Location = new System.Drawing.Point(97, 189);
+            this.btnupdate.Location = new System.Drawing.Point(95, 209);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(75, 23);
             this.btnupdate.TabIndex = 24;
@@ -91,7 +94,7 @@
             // lbl_adesc
             // 
             this.lbl_adesc.AutoSize = true;
-            this.lbl_adesc.Location = new System.Drawing.Point(10, 134);
+            this.lbl_adesc.Location = new System.Drawing.Point(10, 160);
             this.lbl_adesc.Name = "lbl_adesc";
             this.lbl_adesc.Size = new System.Drawing.Size(45, 13);
             this.lbl_adesc.TabIndex = 21;
@@ -99,7 +102,7 @@
             // 
             // txtbx_address
             // 
-            this.txtbx_address.Location = new System.Drawing.Point(116, 131);
+            this.txtbx_address.Location = new System.Drawing.Point(116, 157);
             this.txtbx_address.Name = "txtbx_address";
             this.txtbx_address.Size = new System.Drawing.Size(100, 20);
             this.txtbx_address.TabIndex = 20;
@@ -122,7 +125,7 @@
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(16, 189);
+            this.btn_add.Location = new System.Drawing.Point(14, 209);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
             this.btn_add.TabIndex = 17;
@@ -194,6 +197,7 @@
             this.cmbbxtype.Name = "cmbbxtype";
             this.cmbbxtype.Size = new System.Drawing.Size(100, 21);
             this.cmbbxtype.TabIndex = 30;
+            this.cmbbxtype.SelectedIndexChanged += new System.EventHandler(this.cmbbxtype_SelectedIndexChanged);
             // 
             // cmbbxtypesrch
             // 
@@ -229,7 +233,7 @@
             // lblphn
             // 
             this.lblphn.AutoSize = true;
-            this.lblphn.Location = new System.Drawing.Point(10, 160);
+            this.lblphn.Location = new System.Drawing.Point(10, 186);
             this.lblphn.Name = "lblphn";
             this.lblphn.Size = new System.Drawing.Size(38, 13);
             this.lblphn.TabIndex = 35;
@@ -237,16 +241,37 @@
             // 
             // txtbxPhone
             // 
-            this.txtbxPhone.Location = new System.Drawing.Point(116, 157);
+            this.txtbxPhone.Location = new System.Drawing.Point(116, 183);
             this.txtbxPhone.Name = "txtbxPhone";
             this.txtbxPhone.Size = new System.Drawing.Size(100, 20);
             this.txtbxPhone.TabIndex = 34;
+            this.txtbxPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxPhone_KeyPress);
+            // 
+            // lblSalary
+            // 
+            this.lblSalary.AutoSize = true;
+            this.lblSalary.Location = new System.Drawing.Point(10, 134);
+            this.lblSalary.Name = "lblSalary";
+            this.lblSalary.Size = new System.Drawing.Size(36, 13);
+            this.lblSalary.TabIndex = 37;
+            this.lblSalary.Text = "Salary";
+            // 
+            // txtbx_sal
+            // 
+            this.txtbx_sal.Enabled = false;
+            this.txtbx_sal.Location = new System.Drawing.Point(116, 131);
+            this.txtbx_sal.Name = "txtbx_sal";
+            this.txtbx_sal.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_sal.TabIndex = 36;
+            this.txtbx_sal.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbx_sal_KeyPress);
             // 
             // Accounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 241);
+            this.ClientSize = new System.Drawing.Size(800, 271);
+            this.Controls.Add(this.lblSalary);
+            this.Controls.Add(this.txtbx_sal);
             this.Controls.Add(this.lblphn);
             this.Controls.Add(this.txtbxPhone);
             this.Controls.Add(this.label3);
@@ -300,5 +325,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblphn;
         private System.Windows.Forms.TextBox txtbxPhone;
+        private System.Windows.Forms.Label lblSalary;
+        private System.Windows.Forms.TextBox txtbx_sal;
     }
 }

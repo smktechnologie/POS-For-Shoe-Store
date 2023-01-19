@@ -28,6 +28,24 @@ namespace Pos
         public int RemainingQuantity;
     }
 
+
+    public class PurchaseDetails
+    {
+
+        public PurchaseDetails(int _Quantity, double _Price, double _Total, int _RemainingQuantity)
+        {
+            Quantity = _Quantity;
+            Price = _Price;
+            Total = _Total;
+            RemainingQuantity = _RemainingQuantity;
+        }
+
+        public int Quantity;
+        public double Price;
+        public double Total;
+        public int RemainingQuantity;
+    }
+
     internal static class Program
     {
         public static string dbconnectionstring = string.Empty;
@@ -56,7 +74,7 @@ namespace Pos
             {
                 Application.Run(new HomeUser());
             }*/
-            Application.Run(new Order());
+            Application.Run(new Accounts());
         }
 
         private static void load_data()

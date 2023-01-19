@@ -88,8 +88,8 @@
             // inventoryToolStripMenuItem
             // 
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
-            this.inventoryToolStripMenuItem.Text = "Inventory";
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.inventoryToolStripMenuItem.Text = "Purchase";
             this.inventoryToolStripMenuItem.Click += new System.EventHandler(this.inventoryToolStripMenuItem_Click);
             // 
             // sellToolStripMenuItem
@@ -112,21 +112,21 @@
             // manageAccountsToolStripMenuItem
             // 
             this.manageAccountsToolStripMenuItem.Name = "manageAccountsToolStripMenuItem";
-            this.manageAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.manageAccountsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.manageAccountsToolStripMenuItem.Text = "Manage Accounts";
             this.manageAccountsToolStripMenuItem.Click += new System.EventHandler(this.manageAccountsToolStripMenuItem_Click);
             // 
             // transactionsToolStripMenuItem
             // 
             this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
-            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.transactionsToolStripMenuItem.Text = "Transactions";
             this.transactionsToolStripMenuItem.Click += new System.EventHandler(this.transactionsToolStripMenuItem_Click);
             // 
             // viewTransactionsToolStripMenuItem
             // 
             this.viewTransactionsToolStripMenuItem.Name = "viewTransactionsToolStripMenuItem";
-            this.viewTransactionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewTransactionsToolStripMenuItem.Size = new System.Drawing.Size(170, 22);
             this.viewTransactionsToolStripMenuItem.Text = "View Transactions";
             this.viewTransactionsToolStripMenuItem.Click += new System.EventHandler(this.viewTransactionsToolStripMenuItem_Click);
             // 

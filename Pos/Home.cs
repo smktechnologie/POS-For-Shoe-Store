@@ -66,7 +66,7 @@ namespace Pos
             bool IsOpen = false;
             foreach (Form f in Application.OpenForms)
             {
-                if (f.Text == "Inventory")
+                if (f.Text == "Purchase")
                 {
                     IsOpen = true;
                     f.Focus();
@@ -76,7 +76,7 @@ namespace Pos
 
             if (!IsOpen)
             {
-                Inventory f2 = new Inventory();
+                Purchase f2 = new Purchase();
                 f2.MdiParent = this;
                 f2.Show();
 

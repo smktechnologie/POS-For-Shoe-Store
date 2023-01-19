@@ -58,3 +58,4 @@ C:\POS GIT\POS\Pos\obj\Debug\Pos.exe
 C:\POS GIT\POS\Pos\obj\Debug\Pos.pdb
 C:\POS GIT\POS\Pos\obj\Debug\Pos.AccountTransaction.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.ViewTransations.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Purchase.resources
