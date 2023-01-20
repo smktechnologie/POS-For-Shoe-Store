@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.gbbxtransaction = new System.Windows.Forms.GroupBox();
             this.lblDesc = new System.Windows.Forms.Label();
             this.txtbxDesc = new System.Windows.Forms.TextBox();
@@ -40,7 +41,9 @@
             this.cmbbxtype = new System.Windows.Forms.ComboBox();
             this.lbl_AccType = new System.Windows.Forms.Label();
             this.btnSubmit = new System.Windows.Forms.Button();
+            this.errprvdr = new System.Windows.Forms.ErrorProvider(this.components);
             this.gbbxtransaction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).BeginInit();
             this.SuspendLayout();
             // 
             // gbbxtransaction
@@ -58,7 +61,7 @@
             this.gbbxtransaction.Controls.Add(this.btnSubmit);
             this.gbbxtransaction.Location = new System.Drawing.Point(31, 47);
             this.gbbxtransaction.Name = "gbbxtransaction";
-            this.gbbxtransaction.Size = new System.Drawing.Size(409, 372);
+            this.gbbxtransaction.Size = new System.Drawing.Size(411, 292);
             this.gbbxtransaction.TabIndex = 5;
             this.gbbxtransaction.TabStop = false;
             this.gbbxtransaction.Text = "Add Transaction";
@@ -131,6 +134,7 @@
             this.txtbxAmount.Name = "txtbxAmount";
             this.txtbxAmount.Size = new System.Drawing.Size(100, 20);
             this.txtbxAmount.TabIndex = 35;
+            this.txtbxAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxAmount_KeyPress);
             // 
             // cmbbxtype
             // 
@@ -159,7 +163,7 @@
             // btnSubmit
             // 
             this.btnSubmit.Enabled = false;
-            this.btnSubmit.Location = new System.Drawing.Point(328, 343);
+            this.btnSubmit.Location = new System.Drawing.Point(328, 248);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 2;
@@ -167,17 +171,24 @@
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
+            // errprvdr
+            // 
+            this.errprvdr.BlinkRate = 1000;
+            this.errprvdr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errprvdr.ContainerControl = this;
+            // 
             // AccountTransaction
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(532, 478);
+            this.ClientSize = new System.Drawing.Size(480, 408);
             this.Controls.Add(this.gbbxtransaction);
             this.Name = "AccountTransaction";
-            this.Text = "AccountTransaction";
+            this.Text = "Account Transaction";
             this.Load += new System.EventHandler(this.AccountTransaction_Load);
             this.gbbxtransaction.ResumeLayout(false);
             this.gbbxtransaction.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,5 +207,6 @@
         private System.Windows.Forms.TextBox txtbxAmount;
         private System.Windows.Forms.Label lblDesc;
         private System.Windows.Forms.TextBox txtbxDesc;
+        private System.Windows.Forms.ErrorProvider errprvdr;
     }
 }

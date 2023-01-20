@@ -53,50 +53,73 @@ namespace Pos
                 MessageBox.Show(ex.Message);
             }
         }
+        bool isValidated()
+        {
+            bool isvalidate = true;
+
+            if (string.IsNullOrWhiteSpace(txtbx_aname.Text))
+            {
+                isvalidate = false;
+                errprvdr.SetError(this.txtbx_aname, "Account Name is required.");
+            }
+            else
+            {
+                errprvdr.SetError(this.txtbx_aname, String.Empty);
+            }
+
+            if (cmbbxtype.SelectedItem.ToString() == "Employee" && string.IsNullOrWhiteSpace(txtbx_sal.Text))
+            {
+                isvalidate = false;
+                errprvdr.SetError(this.txtbx_sal, "Salary is required.");
+            }
+            else
+            {
+                errprvdr.SetError(this.txtbx_sal, String.Empty);
+            }
+            return isvalidate;
+        }
+
 
         private void btn_add_Click(object sender, EventArgs e)
         {
-            try
+            if (isValidated())
             {
-                double balance = 0.0;
-                int salary = 0;
-                if (cmbbxtype.SelectedItem.ToString() == "Employee")
+                try
                 {
-                    if (!string.IsNullOrWhiteSpace(txtbx_sal.Text))
-                        salary = Convert.ToInt32(txtbx_sal.Text);
-                    else
+                    double balance = 0.0;
+                    int salary = 0;
+                    if (cmbbxtype.SelectedItem.ToString() == "Employee")
                     {
-                        MessageBox.Show("Salary cannot be empty");
-                        return;
+                        salary = Convert.ToInt32(txtbx_sal.Text);
                     }
 
+                    if (!string.IsNullOrWhiteSpace(txtbxbalance.Text))
+                        balance = Convert.ToInt32(txtbxbalance.Text);
+
+
+
+                    string Query = "insert into  `pos`.`account`(Name,Type,Phone,Address,Balance,Salary,DateTime) values('" + this.txtbx_aname.Text + "','" + cmbbxtype.SelectedItem + "','" + txtbxPhone.Text + "','" + txtbx_address.Text + "'," + balance.ToString() + "," + salary.ToString() + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
+                    //This is  MySqlConnection here i have created the object and pass my connection string.
+                    MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
+                    //This is command class which will handle the query and connection object.
+                    MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                    MySqlDataReader MyReader2;
+                    MyConn2.Open();
+                    MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
+
+                    while (MyReader2.Read())
+                    {
+                    }
+                    MyConn2.Close();
                 }
-
-                if (!string.IsNullOrWhiteSpace(txtbxbalance.Text))
-                    balance = Convert.ToInt32(txtbxbalance.Text);
-
-
-
-                string Query = "insert into  `pos`.`account`(Name,Type,Phone,Address,Balance,Salary,DateTime) values('" + this.txtbx_aname.Text + "','" + cmbbxtype.SelectedItem + "','" + txtbxPhone.Text + "','" + txtbx_address.Text + "'," + balance.ToString() + "," + salary.ToString() + ",'" + System.DateTime.Now.ToString("yyyy-MM-dd H:mm:ss") + "');";
-                //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
-                //This is command class which will handle the query and connection object.
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
-
-                while (MyReader2.Read())
+                catch (Exception ex)
                 {
+                    MessageBox.Show(ex.Message);
                 }
-                MyConn2.Close();
+                load_data();
+                ClearForm();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            load_data();
-            ClearForm();
+
         }
 
         private void btnupdate_Click(object sender, EventArgs e)
@@ -146,31 +169,35 @@ namespace Pos
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            try
+            DialogResult dialogResult = MessageBox.Show("Are you Sure?", "Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (dialogResult == DialogResult.Yes)
             {
-                //This is my connection string i have assigned the database file address path
-
-                //This is my insert query in which i am taking input from the user through windows forms
-                string Query = "update `pos`.`account` set isactive= 0 where id = " + txtAccID.Text + ";";
-                //This is  MySqlConnection here i have created the object and pass my connection string.
-                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
-                //This is command class which will handle the query and connection object.
-                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
-                MySqlDataReader MyReader2;
-                MyConn2.Open();
-                MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
-
-                while (MyReader2.Read())
+                try
                 {
+                    //This is my connection string i have assigned the database file address path
+
+                    //This is my insert query in which i am taking input from the user through windows forms
+                    string Query = "update `pos`.`account` set isactive= 0 where id = " + txtAccID.Text + ";";
+                    //This is  MySqlConnection here i have created the object and pass my connection string.
+                    MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
+                    //This is command class which will handle the query and connection object.
+                    MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                    MySqlDataReader MyReader2;
+                    MyConn2.Open();
+                    MyReader2 = MyCommand2.ExecuteReader();     // Here our query will be executed and data saved into the database.
+
+                    while (MyReader2.Read())
+                    {
+                    }
+                    MyConn2.Close();
                 }
-                MyConn2.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+                load_data();
+                ClearForm();
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-            load_data();
-            ClearForm();
         }
 
         private void dg_account_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -204,6 +231,8 @@ namespace Pos
                 txtbx_sal.Enabled = true;
             else
                 txtbx_sal.Enabled = false;
+
+            btn_add.Enabled = true;
         }
 
         private void txtbx_sal_KeyPress(object sender, KeyPressEventArgs e)

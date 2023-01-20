@@ -44,7 +44,6 @@ C:\POS GIT\POS\Pos\obj\Debug\Pos.exe.config
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Accounts.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Expense.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.HomeUser.resources
-C:\POS GIT\POS\Pos\obj\Debug\Pos.Inventory.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Login.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Order.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Product.resources
@@ -60,3 +59,4 @@ C:\POS GIT\POS\Pos\obj\Debug\Pos.AccountTransaction.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.ViewTransations.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Purchase.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Payroll.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.Settings.resources

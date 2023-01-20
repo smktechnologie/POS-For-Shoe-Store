@@ -217,13 +217,15 @@ namespace Pos
             insertOrderDetails(OrderID);
             MessageBox.Show("Order Submitted Successfully,Order ID : " + OrderID.ToString());
 
+            if (Configurations.isPrintReceiptOrder)
+            {
+                PaperSize psize = new PaperSize("Custom", 100, 30000);
 
-            PaperSize psize = new PaperSize("Custom", 100, 30000);
-
-            printDocument1.DefaultPageSettings.PaperSize = psize;
-            printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
-            printDocument1.DefaultPageSettings.PaperSize.Width = 520;
-            printDocument1.Print();
+                printDocument1.DefaultPageSettings.PaperSize = psize;
+                printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
+                printDocument1.DefaultPageSettings.PaperSize.Width = 520;
+                printDocument1.Print();
+            }
             this.Close();
         }
 

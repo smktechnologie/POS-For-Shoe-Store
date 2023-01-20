@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblbalance = new System.Windows.Forms.Label();
             this.txtbxbalance = new System.Windows.Forms.TextBox();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -52,7 +53,9 @@
             this.lblSalary = new System.Windows.Forms.Label();
             this.txtbx_sal = new System.Windows.Forms.TextBox();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.errprvdr = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dg_account)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).BeginInit();
             this.SuspendLayout();
             // 
             // lblbalance
@@ -74,6 +77,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(176, 209);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -84,6 +88,7 @@
             // 
             // btnupdate
             // 
+            this.btnupdate.Enabled = false;
             this.btnupdate.Location = new System.Drawing.Point(95, 209);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(75, 23);
@@ -126,6 +131,7 @@
             // 
             // btn_add
             // 
+            this.btn_add.Enabled = false;
             this.btn_add.Location = new System.Drawing.Point(14, 209);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
@@ -276,6 +282,12 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // errprvdr
+            // 
+            this.errprvdr.BlinkRate = 1000;
+            this.errprvdr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errprvdr.ContainerControl = this;
+            // 
             // Accounts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -309,6 +321,7 @@
             this.Text = "Accounts";
             this.Load += new System.EventHandler(this.Account_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dg_account)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -340,5 +353,6 @@
         private System.Windows.Forms.Label lblSalary;
         private System.Windows.Forms.TextBox txtbx_sal;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.ErrorProvider errprvdr;
     }
 }

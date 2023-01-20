@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Globalization;
-using System.Linq; 
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -46,8 +46,40 @@ namespace Pos
         public int RemainingQuantity;
     }
 
+    public static class Configurations
+    {
+        public static bool isPrintReceiptOrder = false;
+    }
+
+
     internal static class Program
     {
+
+        public static void LoadSettings()
+        {
+
+            try
+            {
+                DataTable dt = new DataTable();
+                string Query = "select * from `pos`.`configurations`;";
+                MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
+                MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);
+                MyConn2.Open();
+                MySqlDataAdapter MyAdapter = new MySqlDataAdapter();
+                MyAdapter.SelectCommand = MyCommand2;
+                DataTable dTable = new DataTable();
+                MyAdapter.Fill(dTable);
+                MyConn2.Close();
+
+                DataRow[] filteredRows = dTable.Select("Key = 'PrintReceipt'");
+                Configurations.isPrintReceiptOrder = filteredRows.FirstOrDefault()["Value"].ToString() == "1" ? true : false;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         public static string dbconnectionstring = string.Empty;
         public static List<int> productsizes = new List<int>();
         /// <summary>
@@ -62,26 +94,27 @@ namespace Pos
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             load_data();
-            Login frmlogin = new Login();
+            LoadSettings();
+            /*  Login frmlogin = new Login();
 
-            Application.Run(frmlogin);
+              Application.Run(frmlogin);
 
-            if (frmlogin.UserSuccessfullyAuthenticated && frmlogin.IsUserAdmin)
-            {
-                Application.Run(new Home());
-            }
-            else if (frmlogin.UserSuccessfullyAuthenticated)
-            {
-                Application.Run(new HomeUser());
-            }
-            //Application.Run(new Payroll());
+              if (frmlogin.UserSuccessfullyAuthenticated && frmlogin.IsUserAdmin)
+              {
+                  Application.Run(new Home());
+              }
+              else if (frmlogin.UserSuccessfullyAuthenticated)
+              {
+                  Application.Run(new HomeUser());
+              }*/
+            Application.Run(new Order());
         }
 
         private static void load_data()
         {
             try
             {
-               
+
                 string Query = "select * from `pos`.`size`;";
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);

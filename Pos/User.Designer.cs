@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblIsActive = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnupdate = new System.Windows.Forms.Button();
@@ -42,7 +43,12 @@
             this.chkbxactive = new System.Windows.Forms.CheckBox();
             this.chkbxisadmin = new System.Windows.Forms.CheckBox();
             this.lblisadmin = new System.Windows.Forms.Label();
+            this.errprvdr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.Label();
+            this.txtbx_uid = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dg_users)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).BeginInit();
             this.SuspendLayout();
             // 
             // lblIsActive
@@ -56,6 +62,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(201, 208);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
@@ -66,6 +73,7 @@
             // 
             // btnupdate
             // 
+            this.btnupdate.Enabled = false;
             this.btnupdate.Location = new System.Drawing.Point(120, 208);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(75, 23);
@@ -170,11 +178,47 @@
             this.lblisadmin.TabIndex = 29;
             this.lblisadmin.Text = "Is Admin";
             // 
+            // errprvdr
+            // 
+            this.errprvdr.BlinkRate = 1000;
+            this.errprvdr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errprvdr.ContainerControl = this;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(353, 246);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 31;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // ID
+            // 
+            this.ID.AutoSize = true;
+            this.ID.Location = new System.Drawing.Point(27, 78);
+            this.ID.Name = "ID";
+            this.ID.Size = new System.Drawing.Size(43, 13);
+            this.ID.TabIndex = 33;
+            this.ID.Text = "User ID";
+            // 
+            // txtbx_uid
+            // 
+            this.txtbx_uid.Enabled = false;
+            this.txtbx_uid.Location = new System.Drawing.Point(128, 75);
+            this.txtbx_uid.Name = "txtbx_uid";
+            this.txtbx_uid.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_uid.TabIndex = 32;
+            // 
             // User
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(810, 299);
+            this.Controls.Add(this.ID);
+            this.Controls.Add(this.txtbx_uid);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.chkbxisadmin);
             this.Controls.Add(this.lblisadmin);
             this.Controls.Add(this.chkbxactive);
@@ -192,6 +236,7 @@
             this.Name = "User";
             this.Text = "User";
             ((System.ComponentModel.ISupportInitialize)(this.dg_users)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +258,9 @@
         private System.Windows.Forms.CheckBox chkbxactive;
         private System.Windows.Forms.CheckBox chkbxisadmin;
         private System.Windows.Forms.Label lblisadmin;
+        private System.Windows.Forms.ErrorProvider errprvdr;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label ID;
+        private System.Windows.Forms.TextBox txtbx_uid;
     }
 }

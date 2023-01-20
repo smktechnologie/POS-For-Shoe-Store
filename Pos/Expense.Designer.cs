@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnupdate = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.Label();
@@ -40,12 +41,18 @@
             this.txtbx_name_search = new System.Windows.Forms.TextBox();
             this.dg_products = new System.Windows.Forms.DataGridView();
             this.btn_search = new System.Windows.Forms.Button();
+            this.errprvdr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblExpenseAmount = new System.Windows.Forms.Label();
+            this.txtbxAmount = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dg_products)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(178, 168);
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(178, 180);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 23;
@@ -55,7 +62,8 @@
             // 
             // btnupdate
             // 
-            this.btnupdate.Location = new System.Drawing.Point(97, 168);
+            this.btnupdate.Enabled = false;
+            this.btnupdate.Location = new System.Drawing.Point(97, 180);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(75, 23);
             this.btnupdate.TabIndex = 22;
@@ -66,7 +74,7 @@
             // ID
             // 
             this.ID.AutoSize = true;
-            this.ID.Location = new System.Drawing.Point(13, 64);
+            this.ID.Location = new System.Drawing.Point(13, 47);
             this.ID.Name = "ID";
             this.ID.Size = new System.Drawing.Size(62, 13);
             this.ID.TabIndex = 21;
@@ -75,7 +83,7 @@
             // txtbx_pid
             // 
             this.txtbx_pid.Enabled = false;
-            this.txtbx_pid.Location = new System.Drawing.Point(115, 61);
+            this.txtbx_pid.Location = new System.Drawing.Point(115, 44);
             this.txtbx_pid.Name = "txtbx_pid";
             this.txtbx_pid.Size = new System.Drawing.Size(100, 20);
             this.txtbx_pid.TabIndex = 20;
@@ -83,7 +91,7 @@
             // lbl_pdesc
             // 
             this.lbl_pdesc.AutoSize = true;
-            this.lbl_pdesc.Location = new System.Drawing.Point(13, 119);
+            this.lbl_pdesc.Location = new System.Drawing.Point(12, 132);
             this.lbl_pdesc.Name = "lbl_pdesc";
             this.lbl_pdesc.Size = new System.Drawing.Size(104, 13);
             this.lbl_pdesc.TabIndex = 19;
@@ -91,15 +99,16 @@
             // 
             // txtbx_pdesc
             // 
-            this.txtbx_pdesc.Location = new System.Drawing.Point(115, 116);
+            this.txtbx_pdesc.Location = new System.Drawing.Point(115, 120);
+            this.txtbx_pdesc.Multiline = true;
             this.txtbx_pdesc.Name = "txtbx_pdesc";
-            this.txtbx_pdesc.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_pdesc.Size = new System.Drawing.Size(138, 46);
             this.txtbx_pdesc.TabIndex = 18;
             // 
             // lbl_pname
             // 
             this.lbl_pname.AutoSize = true;
-            this.lbl_pname.Location = new System.Drawing.Point(13, 90);
+            this.lbl_pname.Location = new System.Drawing.Point(13, 73);
             this.lbl_pname.Name = "lbl_pname";
             this.lbl_pname.Size = new System.Drawing.Size(79, 13);
             this.lbl_pname.TabIndex = 17;
@@ -107,14 +116,14 @@
             // 
             // txtbx_pname
             // 
-            this.txtbx_pname.Location = new System.Drawing.Point(115, 87);
+            this.txtbx_pname.Location = new System.Drawing.Point(115, 70);
             this.txtbx_pname.Name = "txtbx_pname";
             this.txtbx_pname.Size = new System.Drawing.Size(100, 20);
             this.txtbx_pname.TabIndex = 16;
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(16, 168);
+            this.btn_add.Location = new System.Drawing.Point(16, 180);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
             this.btn_add.TabIndex = 15;
@@ -148,11 +157,47 @@
             this.btn_search.UseVisualStyleBackColor = true;
             this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
             // 
+            // errprvdr
+            // 
+            this.errprvdr.BlinkRate = 1000;
+            this.errprvdr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errprvdr.ContainerControl = this;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(329, 227);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 24;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // lblExpenseAmount
+            // 
+            this.lblExpenseAmount.AutoSize = true;
+            this.lblExpenseAmount.Location = new System.Drawing.Point(13, 98);
+            this.lblExpenseAmount.Name = "lblExpenseAmount";
+            this.lblExpenseAmount.Size = new System.Drawing.Size(87, 13);
+            this.lblExpenseAmount.TabIndex = 26;
+            this.lblExpenseAmount.Text = "Expense Amount";
+            // 
+            // txtbxAmount
+            // 
+            this.txtbxAmount.Location = new System.Drawing.Point(115, 95);
+            this.txtbxAmount.Name = "txtbxAmount";
+            this.txtbxAmount.Size = new System.Drawing.Size(100, 20);
+            this.txtbxAmount.TabIndex = 25;
+            this.txtbxAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxAmount_KeyPress);
+            // 
             // Expense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(800, 263);
+            this.Controls.Add(this.lblExpenseAmount);
+            this.Controls.Add(this.txtbxAmount);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnupdate);
             this.Controls.Add(this.ID);
@@ -168,6 +213,7 @@
             this.Name = "Expense";
             this.Text = "Expense";
             ((System.ComponentModel.ISupportInitialize)(this.dg_products)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +233,9 @@
         private System.Windows.Forms.TextBox txtbx_name_search;
         private System.Windows.Forms.DataGridView dg_products;
         private System.Windows.Forms.Button btn_search;
+        private System.Windows.Forms.ErrorProvider errprvdr;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label lblExpenseAmount;
+        private System.Windows.Forms.TextBox txtbxAmount;
     }
 }

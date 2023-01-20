@@ -79,18 +79,51 @@ namespace Pos
 
         }
 
+        void clearform()
+        {
+            txtbxAmount.Clear();
+            txtbxBal.Clear();
+            txtbxDesc.Clear();
+        }
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            insertTransactions();
-            updateBalance();
+            if (isValidated())
+            {
+                insertTransactions();
+                updateBalance();
+                DialogResult dialogResult = MessageBox.Show("Transaction inserted succcesfully.", "Done", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                clearform();
+                Accounts.Clear();
+                SelectedBalance = 0.0;
+                load_Accounts();
+            }
         }
+
+        bool isValidated()
+        {
+            bool isvalidate = true;
+
+            if (string.IsNullOrWhiteSpace(txtbxAmount.Text))
+            {
+                isvalidate = false;
+                errprvdr.SetError(this.txtbxAmount, "Ammount Name is required.");
+            }
+            else
+            {
+                errprvdr.SetError(this.txtbxAmount, String.Empty);
+            }
+
+            return isvalidate;
+        }
+
 
         void updateBalance()
         {
             try
             {
                 double NewBalance = SelectedBalance - Convert.ToDouble(txtbxAmount.Text);
-                string Query = "update `pos`.`account` set Balance =" + NewBalance + "'where id = " + cmbbxAccount.SelectedValue.ToString() + ";";
+                string Query = "update `pos`.`account` set Balance =" + NewBalance + " where id = " + cmbbxAccount.SelectedValue.ToString() + ";";
                 //This is  MySqlConnection here i have created the object and pass my connection string.
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 //This is command class which will handle the query and connection object.
@@ -151,6 +184,26 @@ namespace Pos
                 }
             }
 
+        }
+
+        private void txtbxAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.') && (e.KeyChar != '-'))
+            {
+                e.Handled = true;
+            }
+
+            // If you want, you can allow decimal (float) numbers
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+
+            if ((e.KeyChar == '-') && !string.IsNullOrWhiteSpace((sender as TextBox).Text))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

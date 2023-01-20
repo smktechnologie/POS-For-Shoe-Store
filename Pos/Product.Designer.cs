@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btn_search = new System.Windows.Forms.Button();
             this.dg_products = new System.Windows.Forms.DataGridView();
             this.txtbx_name_search = new System.Windows.Forms.TextBox();
@@ -42,7 +43,10 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblPrice = new System.Windows.Forms.Label();
             this.txtbxPrice = new System.Windows.Forms.TextBox();
+            this.errprvdr = new System.Windows.Forms.ErrorProvider(this.components);
+            this.btnRefresh = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dg_products)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_search
@@ -80,7 +84,7 @@
             // 
             // btn_add
             // 
-            this.btn_add.Location = new System.Drawing.Point(16, 168);
+            this.btn_add.Location = new System.Drawing.Point(16, 185);
             this.btn_add.Name = "btn_add";
             this.btn_add.Size = new System.Drawing.Size(75, 23);
             this.btn_add.TabIndex = 3;
@@ -109,8 +113,9 @@
             // txtbx_pdesc
             // 
             this.txtbx_pdesc.Location = new System.Drawing.Point(116, 133);
+            this.txtbx_pdesc.Multiline = true;
             this.txtbx_pdesc.Name = "txtbx_pdesc";
-            this.txtbx_pdesc.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_pdesc.Size = new System.Drawing.Size(137, 37);
             this.txtbx_pdesc.TabIndex = 6;
             // 
             // ID
@@ -132,7 +137,8 @@
             // 
             // btnupdate
             // 
-            this.btnupdate.Location = new System.Drawing.Point(97, 168);
+            this.btnupdate.Enabled = false;
+            this.btnupdate.Location = new System.Drawing.Point(97, 185);
             this.btnupdate.Name = "btnupdate";
             this.btnupdate.Size = new System.Drawing.Size(75, 23);
             this.btnupdate.TabIndex = 10;
@@ -142,7 +148,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Location = new System.Drawing.Point(178, 168);
+            this.btnDelete.Enabled = false;
+            this.btnDelete.Location = new System.Drawing.Point(178, 185);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 23);
             this.btnDelete.TabIndex = 11;
@@ -165,12 +172,30 @@
             this.txtbxPrice.Name = "txtbxPrice";
             this.txtbxPrice.Size = new System.Drawing.Size(100, 20);
             this.txtbxPrice.TabIndex = 12;
+            this.txtbxPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbxPrice_KeyPress);
+            // 
+            // errprvdr
+            // 
+            this.errprvdr.BlinkRate = 1000;
+            this.errprvdr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errprvdr.ContainerControl = this;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Location = new System.Drawing.Point(341, 197);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(75, 23);
+            this.btnRefresh.TabIndex = 25;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // Product
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 257);
+            this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.lblPrice);
             this.Controls.Add(this.txtbxPrice);
             this.Controls.Add(this.btnDelete);
@@ -188,6 +213,7 @@
             this.Name = "Product";
             this.Text = "Products";
             ((System.ComponentModel.ISupportInitialize)(this.dg_products)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -209,6 +235,8 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.TextBox txtbxPrice;
+        private System.Windows.Forms.ErrorProvider errprvdr;
+        private System.Windows.Forms.Button btnRefresh;
     }
 }
 
