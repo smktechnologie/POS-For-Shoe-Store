@@ -14,14 +14,15 @@ namespace Pos
     public class ProductDetails
     {
 
-        public ProductDetails(int _Quantity, double _Price, double _Total, int _RemainingQuantity)
+        public ProductDetails(string _ProductName, int _Quantity, double _Price, double _Total, int _RemainingQuantity)
         {
+            ProductName = _ProductName;
             Quantity = _Quantity;
             Price = _Price;
             Total = _Total;
             RemainingQuantity = _RemainingQuantity;
         }
-
+        public string ProductName;
         public int Quantity;
         public double Price;
         public double Total;
@@ -54,7 +55,7 @@ namespace Pos
 
     internal static class Program
     {
-
+        public static string LoggedinUser = string.Empty;
         public static void LoadSettings()
         {
 
@@ -95,19 +96,19 @@ namespace Pos
             Application.SetCompatibleTextRenderingDefault(false);
             load_data();
             LoadSettings();
-            /*  Login frmlogin = new Login();
+             Login frmlogin = new Login();
 
-              Application.Run(frmlogin);
+             Application.Run(frmlogin);
 
-              if (frmlogin.UserSuccessfullyAuthenticated && frmlogin.IsUserAdmin)
-              {
-                  Application.Run(new Home());
-              }
-              else if (frmlogin.UserSuccessfullyAuthenticated)
-              {
-                  Application.Run(new HomeUser());
-              }*/
-            Application.Run(new Order());
+            if (frmlogin.UserSuccessfullyAuthenticated && frmlogin.IsUserAdmin)
+             {
+                 Application.Run(new Home());
+             }
+             else if (frmlogin.UserSuccessfullyAuthenticated)
+             {
+                 Application.Run(new HomeUser());
+             }
+            //Application.Run(new Order());
         }
 
         private static void load_data()

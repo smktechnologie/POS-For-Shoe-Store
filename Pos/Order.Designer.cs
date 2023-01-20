@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Order));
             this.label1 = new System.Windows.Forms.Label();
             this.txtbxTotal = new System.Windows.Forms.TextBox();
             this.btn_Submit = new System.Windows.Forms.Button();
@@ -64,6 +65,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblcustomer = new System.Windows.Forms.Label();
             this.cmbbx_CustomerAcc = new System.Windows.Forms.ComboBox();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errprvdr_quantity)).BeginInit();
             this.SuspendLayout();
@@ -377,6 +379,16 @@
             this.cmbbx_CustomerAcc.Size = new System.Drawing.Size(100, 21);
             this.cmbbx_CustomerAcc.TabIndex = 26;
             // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
             // Order
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -453,5 +465,6 @@
         private System.Windows.Forms.Label lblpaid;
         private System.Windows.Forms.Label lblcustomer;
         private System.Windows.Forms.ComboBox cmbbx_CustomerAcc;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }

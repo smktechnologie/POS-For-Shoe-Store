@@ -28,13 +28,15 @@ namespace Pos
             {
                 UserSuccessfullyAuthenticated = true;
                 IsUserAdmin = true;
+                Program.LoggedinUser = txtbxUserName.Text;
                 this.Close();
 
             }
             else if (result.Item1)
             {
-                UserSuccessfullyAuthenticated = true;              
-                this.Close();               
+                UserSuccessfullyAuthenticated = true;
+                Program.LoggedinUser = txtbxUserName.Text;
+                this.Close();
             }
             else
             {
@@ -52,7 +54,7 @@ namespace Pos
             try
             {
 
-           
+
                 string Query = "select username,isadmin from `pos`.`users` where username = '" + txtbxUserName.Text + "' and password='" + txtbxpassword.Text + "' and isactive=1;";
                 MySqlConnection MyConn2 = new MySqlConnection(Program.dbconnectionstring);
                 MySqlCommand MyCommand2 = new MySqlCommand(Query, MyConn2);

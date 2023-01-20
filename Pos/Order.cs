@@ -19,7 +19,7 @@ namespace Pos
         double TotalOrderSum = 0.0;
         Dictionary<KeyValuePair<int, int>, ProductDetails> DictOrderDetails = new Dictionary<KeyValuePair<int, int>, ProductDetails>();
         DataTable dTableproductsstock = new DataTable();
-
+        int OrderID;
         DataTable dTableproducts = new DataTable();
         public Order()
         {
@@ -139,12 +139,13 @@ namespace Pos
                             Total.ToString(),
                             "Remove"
                             );
-                        DictOrderDetails.Add(Productkey, new ProductDetails(Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
+                        DictOrderDetails.Add(Productkey, new ProductDetails(cmbbxitem.Text, Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
                         btn_Submit.Enabled = true;
                         TotalOrderSum += Total;
                         txtbxTotal.Text = TotalOrderSum.ToString();
                         txtNetTotal.Text = TotalOrderSum.ToString();
-                        txtremaining.Text = TotalOrderSum.ToString();
+                        txtremaining.Text = "0";
+                        txtbxpaid.Text = TotalOrderSum.ToString();
 
                     }
                     else
@@ -224,6 +225,9 @@ namespace Pos
                 printDocument1.DefaultPageSettings.PaperSize = psize;
                 printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
                 printDocument1.DefaultPageSettings.PaperSize.Width = 520;
+
+              /*  printPreviewDialog1.Document = printDocument1;
+                printPreviewDialog1.ShowDialog();*/
                 printDocument1.Print();
             }
             this.Close();
@@ -283,6 +287,7 @@ namespace Pos
             {
                 MessageBox.Show(ex.Message);
             }
+            this.OrderID = OrderID;
             return OrderID;
         }
 
@@ -413,33 +418,69 @@ namespace Pos
                 // Offset = Offset + 15;
                 graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
                 Offset = Offset + 15;
-                graphics.DrawString("Shabana Foot Wear Store ", new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), startX + 45, startY + Offset);
+                graphics.DrawString("SHABANA FOOT WEAR", new Font("Calibri", 15, FontStyle.Bold), new SolidBrush(Color.Black), startX + 35, startY + Offset);
+                Offset = Offset + 18;
+                graphics.DrawString("Resham Bazar Hyderabad", new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), startX + 60, startY + Offset);
+                Offset = Offset + 14;
+                graphics.DrawString("03133886078", new Font("Calibri", 10, FontStyle.Bold), new SolidBrush(Color.Black), startX + 85, startY + Offset);
                 Offset = Offset + 15;
                 graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
 
                 Offset = Offset + 15;
-                graphics.DrawString("Name", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX, startY + Offset);
-                graphics.DrawString("Quantity", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 130, startY + Offset);
-                graphics.DrawString("Price", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                graphics.DrawString("Date: ", new Font("Calibri", 9), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString(DateTime.Now.ToString("d, MMM, yyyy"), new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 30, startY + Offset);
+                graphics.DrawString("User: ", new Font("Calibri", 9), new SolidBrush(Color.Black), startX + 130, startY + Offset);
+                graphics.DrawString(Program.LoggedinUser, new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 130 + 30, startY + Offset);
+
                 Offset = Offset + 15;
-                for (int i = 0; i < 2; i++)
+                graphics.DrawString("Invoice: ", new Font("Calibri", 9), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString(OrderID.ToString(), new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 40, startY + Offset);
+                graphics.DrawString("Customer: ", new Font("Calibri", 9), new SolidBrush(Color.Black), startX + 130, startY + Offset);
+                graphics.DrawString(cmbbx_CustomerAcc.Text, new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), startX + 130 + 55, startY + Offset);
+
+                Offset = Offset + 15;
+                graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
+
+                Offset = Offset + 15;
+                graphics.DrawString("Name", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), 0, startY + Offset);
+                graphics.DrawString("Quantity", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), 120, startY + Offset);
+                graphics.DrawString("Price", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), 180, startY + Offset);
+                graphics.DrawString("Total", new Font("Calibri", 9, FontStyle.Bold), new SolidBrush(Color.Black), 240, startY + Offset);
+                Offset = Offset + 15;
+                //int count = 0;
+                foreach (var item in DictOrderDetails)
                 {
-                    string item = (i + 1) + " - " + "Name " + i.ToString();
-                    string quantity = i.ToString();
-                    graphics.DrawString(item, new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
-                    graphics.DrawString(quantity, new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 130, startY + Offset);
-                    graphics.DrawString((i * 100).ToString(), new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                    // count = count + 1;
+                    string ProductName = item.Key.Key + " - " + item.Value.ProductName + "-" + item.Key.Value;
+                    graphics.DrawString(ProductName, new Font("Calibri", 8), new SolidBrush(Color.Black), 0, startY + Offset);
+                    graphics.DrawString(item.Value.Quantity.ToString(), new Font("Calibri", 8), new SolidBrush(Color.Black), 120, startY + Offset);
+                    graphics.DrawString(item.Value.Price.ToString(), new Font("Calibri", 8), new SolidBrush(Color.Black), 180, startY + Offset);
+                    graphics.DrawString(item.Value.Total.ToString(), new Font("Calibri", 8), new SolidBrush(Color.Black), 240, startY + Offset);
                     Offset = Offset + 15;
                 }
+
                 graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
                 Offset = Offset + 15;
-                graphics.DrawString("Total", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
-                graphics.DrawString("20000", new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                graphics.DrawString("Total", new Font("Calibri", 8), new SolidBrush(Color.Black), 0, startY + Offset);
+                graphics.DrawString(this.txtbxpaid.Text, new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
                 Offset = Offset + 15;
-                graphics.DrawString("Print Time :  " + DateTime.Now.ToString("d, MMMM, yyyy. hh:mm - tt "), new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
+                graphics.DrawString("Print Date/Time :  " + DateTime.Now.ToString("d, MMMM, yyyy. hh:mm - tt "), new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 15;
+                graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("-All Garantee is based on pasting/sticking repair only.", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("-No garantee on silver,golden/fancy type of article.", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("-Goods may be exchanged within 15 days with bill receipt.", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 15;
+               
+                graphics.DrawString("-No exchange for used/damaged/altered product .", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("-Good condition(With tags) product can be exchanged.", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
 
-                graphics.DrawString("By : SMK Technologies", new Font("Calibri", 10), new SolidBrush(Color.Black), startX, startY + Offset);
+                Offset = Offset + 15; 
+                graphics.DrawString("By : SMK Technologies Contact : 03452408728", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
             }
             catch (Exception ex)
             {
@@ -505,5 +546,17 @@ namespace Pos
             }
         }
 
+      /*  private void button1_Click(object sender, EventArgs e)
+        {
+            PaperSize psize = new PaperSize("Custom", 100, 30000);
+
+            printDocument1.DefaultPageSettings.PaperSize = psize;
+            printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
+            printDocument1.DefaultPageSettings.PaperSize.Width = 520;
+
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+            // printDocument1.Print();
+        }*/
     }
 }
