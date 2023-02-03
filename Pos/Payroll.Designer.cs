@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtbx_sal = new System.Windows.Forms.TextBox();
+            this.lblSalary = new System.Windows.Forms.Label();
             this.cmbx_type = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblType = new System.Windows.Forms.Label();
@@ -37,10 +40,10 @@
             this.cmbx_Account = new System.Windows.Forms.ComboBox();
             this.lblAmount = new System.Windows.Forms.Label();
             this.lblAcct = new System.Windows.Forms.Label();
-            this.txtbx_sal = new System.Windows.Forms.TextBox();
-            this.lblSalary = new System.Windows.Forms.Label();
+            this.errprvdr = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
@@ -68,6 +71,23 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Employee Salary";
+            // 
+            // txtbx_sal
+            // 
+            this.txtbx_sal.Enabled = false;
+            this.txtbx_sal.Location = new System.Drawing.Point(502, 19);
+            this.txtbx_sal.Name = "txtbx_sal";
+            this.txtbx_sal.Size = new System.Drawing.Size(100, 20);
+            this.txtbx_sal.TabIndex = 16;
+            // 
+            // lblSalary
+            // 
+            this.lblSalary.AutoSize = true;
+            this.lblSalary.Location = new System.Drawing.Point(441, 22);
+            this.lblSalary.Name = "lblSalary";
+            this.lblSalary.Size = new System.Drawing.Size(36, 13);
+            this.lblSalary.TabIndex = 17;
+            this.lblSalary.Text = "Salary";
             // 
             // cmbx_type
             // 
@@ -134,22 +154,11 @@
             this.lblAcct.TabIndex = 11;
             this.lblAcct.Text = "Employee Account";
             // 
-            // txtbx_sal
+            // errprvdr
             // 
-            this.txtbx_sal.Enabled = false;
-            this.txtbx_sal.Location = new System.Drawing.Point(502, 19);
-            this.txtbx_sal.Name = "txtbx_sal";
-            this.txtbx_sal.Size = new System.Drawing.Size(100, 20);
-            this.txtbx_sal.TabIndex = 16;
-            // 
-            // lblSalary
-            // 
-            this.lblSalary.AutoSize = true;
-            this.lblSalary.Location = new System.Drawing.Point(441, 22);
-            this.lblSalary.Name = "lblSalary";
-            this.lblSalary.Size = new System.Drawing.Size(36, 13);
-            this.lblSalary.TabIndex = 17;
-            this.lblSalary.Text = "Salary";
+            this.errprvdr.BlinkRate = 1000;
+            this.errprvdr.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
+            this.errprvdr.ContainerControl = this;
             // 
             // Payroll
             // 
@@ -164,6 +173,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errprvdr)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -181,5 +191,6 @@
         private System.Windows.Forms.TextBox txtbx_amount;
         private System.Windows.Forms.TextBox txtbx_sal;
         private System.Windows.Forms.Label lblSalary;
+        private System.Windows.Forms.ErrorProvider errprvdr;
     }
 }

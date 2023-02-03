@@ -216,5 +216,71 @@ namespace Pos
 
             }
         }
+
+        private void purchaseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Report Purchase")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                ReportPurchase f2 = new ReportPurchase();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
+
+        private void sellToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Report Sell")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                ReportSell f2 = new ReportSell();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
+
+        private void expenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Report Expense")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                ReportExpense f2 = new ReportExpense();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
     }
 }

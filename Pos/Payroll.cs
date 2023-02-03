@@ -21,10 +21,44 @@ namespace Pos
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            insertTransactions();
-            LoadData();
-            txtbx_amount.Clear();
+            if (isValidated())
+            {
+                insertTransactions();
+                LoadData();
+                txtbx_amount.Clear();
+            }
         }
+
+        bool isValidated()
+        {
+            bool isvalidate = true;
+            if (cmbx_type.SelectedItem == null)
+            {
+                isvalidate = false;
+                errprvdr.SetError(this.cmbx_type, "Please select type.");
+            }
+            else
+            {
+                errprvdr.SetError(this.cmbx_type, String.Empty);
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbx_amount.Text))
+            {
+                isvalidate = false;
+                errprvdr.SetError(this.txtbx_amount, "Amount is required.");
+            }
+            else
+            {
+                errprvdr.SetError(this.txtbx_amount, String.Empty);
+            }
+
+
+
+
+            return isvalidate;
+        }
+
+
         private void load_EmployeeAccounts()
         {
             try

@@ -60,3 +60,7 @@ C:\POS GIT\POS\Pos\obj\Debug\Pos.ViewTransations.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Purchase.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Payroll.resources
 C:\POS GIT\POS\Pos\obj\Debug\Pos.Settings.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.ReportPurchase.resources
+C:\POS GIT\POS\Pos\bin\Debug\iTextSharp.dll
+C:\POS GIT\POS\Pos\obj\Debug\Pos.ReportSell.resources
+C:\POS GIT\POS\Pos\obj\Debug\Pos.ReportExpense.resources

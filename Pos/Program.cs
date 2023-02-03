@@ -108,7 +108,7 @@ namespace Pos
              {
                  Application.Run(new HomeUser());
              }
-            //Application.Run(new Order());
+            //Application.Run(new Home());
         }
 
         private static void load_data()
