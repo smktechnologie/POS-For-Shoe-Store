@@ -66,6 +66,12 @@
     <Compile Include="AccountTransaction.Designer.cs">
       <DependentUpon>AccountTransaction.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Expense.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,11 +140,23 @@
     <Compile Include="ReportSell.Designer.cs">
       <DependentUpon>ReportSell.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportTransactions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportTransactions.Designer.cs">
+      <DependentUpon>ReportTransactions.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Settings.Designer.cs">
       <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Stock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Stock.Designer.cs">
+      <DependentUpon>Stock.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
       <SubType>Form</SubType>
@@ -157,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AccountTransaction.resx">
       <DependentUpon>AccountTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Expense.resx">
       <DependentUpon>Expense.cs</DependentUpon>
@@ -200,8 +221,14 @@
     <EmbeddedResource Include="ReportSell.resx">
       <DependentUpon>ReportSell.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportTransactions.resx">
+      <DependentUpon>ReportTransactions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Stock.resx">
+      <DependentUpon>Stock.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User.resx">
       <DependentUpon>User.cs</DependentUpon>

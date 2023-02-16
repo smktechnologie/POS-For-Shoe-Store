@@ -282,5 +282,27 @@ namespace Pos
 
             }
         }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool IsOpen = false;
+            foreach (Form f in Application.OpenForms)
+            {
+                if (f.Text == "Dashboard")
+                {
+                    IsOpen = true;
+                    f.Focus();
+                    break;
+                }
+            }
+
+            if (!IsOpen)
+            {
+                Dashboard f2 = new Dashboard();
+                f2.MdiParent = this;
+                f2.Show();
+
+            }
+        }
     }
 }
