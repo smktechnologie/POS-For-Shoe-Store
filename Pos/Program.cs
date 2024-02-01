@@ -78,7 +78,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
         public static string dbconnectionstring = string.Empty;
@@ -133,7 +133,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
     }

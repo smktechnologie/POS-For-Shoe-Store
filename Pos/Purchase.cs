@@ -89,13 +89,21 @@ namespace Pos
         }
         private void Purchase_Load(object sender, EventArgs e)
         {
-            load_Products();
-            load_product_stock();
-            load_PurchaseAccounts();
-            var bindingSource1 = new BindingSource();
-            bindingSource1.DataSource = Program.productsizes;
-            cmbbxSize.DataSource = bindingSource1.DataSource;
+            try
+            {
+                load_Products();
+                load_product_stock();
+                load_PurchaseAccounts();
+                var bindingSource1 = new BindingSource();
+                bindingSource1.DataSource = Program.productsizes;
+                cmbbxSize.DataSource = bindingSource1.DataSource;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
+            }
         }
+
 
         private void load_PurchaseAccounts()
         {
@@ -119,7 +127,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -145,7 +153,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -168,7 +176,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -282,19 +290,18 @@ namespace Pos
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
-            insertPurchase();
-            int PurchaseID = getPurchaseID();
-            insertPurchaseDetails(PurchaseID);
-            MessageBox.Show("Order Submitted Successfully,Order ID : " + PurchaseID.ToString());
-
-
-            PaperSize psize = new PaperSize("Custom", 100, 30000);
-
-            printDocument1.DefaultPageSettings.PaperSize = psize;
-            printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
-            printDocument1.DefaultPageSettings.PaperSize.Width = 520;
-            printDocument1.Print();
-            this.Close();
+            try
+            {
+                insertPurchase();
+                int PurchaseID = getPurchaseID();
+                insertPurchaseDetails(PurchaseID);
+                MessageBox.Show("Purchase Submitted Successfully,Purchase ID : " + PurchaseID.ToString());      
+                this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
+            }
         }
 
         void insertPurchase()
@@ -324,7 +331,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -349,7 +356,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
             return PurchaseID;
         }
@@ -399,7 +406,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 

@@ -35,13 +35,32 @@ namespace Pos
                 MyAdapter.SelectCommand = MyCommand2;
                 DataTable dTable = new DataTable();
                 MyAdapter.Fill(dTable);
-                dgResults.DataSource = dTable;
                 MyConn2.Close();
-                btn_print.Enabled = true;
+
+                if (dTable.Rows.Count > 0)
+                {
+                    foreach (DataRow dr in dTable.Rows)
+                    {
+                        dgResults.Rows.Add("View",
+                               dr[0].ToString(),
+                              dr[1].ToString(),
+                               dr[2].ToString(),
+                              dr[3].ToString(),
+                              dr[4].ToString(),
+                               dr[5].ToString(),
+                              dr[6].ToString(),
+                                dr[7].ToString()
+                               );
+                    }
+
+
+                    btn_print.Enabled = true;
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -114,6 +133,18 @@ namespace Pos
             else
             {
                 MessageBox.Show("No Record To Export !!!", "Info");
+            }
+        }
+
+        private void dgResults_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex != dgResults.NewRowIndex && e.ColumnIndex == 0)
+            {
+                ProductDetails pd;
+                int OrderID = Convert.ToInt32(dgResults.Rows[e.RowIndex].Cells[1].Value);
+                FrmOrderDetail frm = new FrmOrderDetail(OrderID);
+                frm.ShowDialog(this);
+                frm.Dispose();
             }
         }
     }

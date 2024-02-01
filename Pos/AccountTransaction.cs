@@ -43,7 +43,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -139,7 +139,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -165,7 +165,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 

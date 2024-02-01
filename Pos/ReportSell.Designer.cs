@@ -35,6 +35,15 @@
             this.dtTo = new System.Windows.Forms.DateTimePicker();
             this.dtfrom = new System.Windows.Forms.DateTimePicker();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.Datetime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Remaining = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Paid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NetTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Discount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Total = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.View = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dgResults = new System.Windows.Forms.DataGridView();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResults)).BeginInit();
@@ -109,13 +118,77 @@
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // Datetime
+            // 
+            this.Datetime.HeaderText = "Datetime";
+            this.Datetime.Name = "Datetime";
+            this.Datetime.ReadOnly = true;
+            // 
+            // Remaining
+            // 
+            this.Remaining.HeaderText = "Remaining";
+            this.Remaining.Name = "Remaining";
+            this.Remaining.ReadOnly = true;
+            // 
+            // Paid
+            // 
+            this.Paid.HeaderText = "Paid";
+            this.Paid.Name = "Paid";
+            this.Paid.ReadOnly = true;
+            // 
+            // NetTotal
+            // 
+            this.NetTotal.HeaderText = "Net Total";
+            this.NetTotal.Name = "NetTotal";
+            this.NetTotal.ReadOnly = true;
+            // 
+            // Discount
+            // 
+            this.Discount.HeaderText = "Discount";
+            this.Discount.Name = "Discount";
+            this.Discount.ReadOnly = true;
+            // 
+            // Total
+            // 
+            this.Total.HeaderText = "Total";
+            this.Total.Name = "Total";
+            this.Total.ReadOnly = true;
+            // 
+            // CustName
+            // 
+            this.CustName.HeaderText = "Name";
+            this.CustName.Name = "CustName";
+            this.CustName.ReadOnly = true;
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // View
+            // 
+            this.View.HeaderText = "View";
+            this.View.Name = "View";
+            // 
             // dgResults
             // 
             this.dgResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.View,
+            this.ID,
+            this.CustName,
+            this.Total,
+            this.Discount,
+            this.NetTotal,
+            this.Paid,
+            this.Remaining,
+            this.Datetime});
             this.dgResults.Location = new System.Drawing.Point(50, 99);
             this.dgResults.Name = "dgResults";
             this.dgResults.Size = new System.Drawing.Size(842, 339);
             this.dgResults.TabIndex = 4;
+            this.dgResults.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgResults_CellClick);
             // 
             // ReportSell
             // 
@@ -142,6 +215,15 @@
         private System.Windows.Forms.DateTimePicker dtTo;
         private System.Windows.Forms.DateTimePicker dtfrom;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Datetime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Remaining;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Paid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NetTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Discount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Total;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
+        private System.Windows.Forms.DataGridViewLinkColumn View;
         private System.Windows.Forms.DataGridView dgResults;
     }
 }

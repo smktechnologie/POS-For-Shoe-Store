@@ -203,6 +203,7 @@
             this.cmbbxitem.Size = new System.Drawing.Size(121, 21);
             this.cmbbxitem.TabIndex = 7;
             this.cmbbxitem.SelectionChangeCommitted += new System.EventHandler(this.cmbbxitem_SelectionChangeCommitted);
+            this.cmbbxitem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbbxitem_KeyDown);
             // 
             // lblItem
             // 

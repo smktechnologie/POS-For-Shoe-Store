@@ -50,7 +50,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
         bool isValidated()
@@ -114,7 +114,7 @@ namespace Pos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
                 }
                 load_data();
                 ClearForm();
@@ -161,7 +161,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
             load_data();
             ClearForm();
@@ -193,7 +193,7 @@ namespace Pos
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
+                    MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
                 }
                 load_data();
                 ClearForm();

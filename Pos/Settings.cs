@@ -39,7 +39,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
             Program.LoadSettings();
             MessageBox.Show("Settings Updated Successfully", "Settingss", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -66,7 +66,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 

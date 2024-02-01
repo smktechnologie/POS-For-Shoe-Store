@@ -59,7 +59,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -87,7 +87,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -110,7 +110,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -213,6 +213,13 @@ namespace Pos
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
+            if(Convert.ToDouble(txtbxpaid.Text) > Convert.ToDouble(txtNetTotal.Text))
+            {
+                MessageBox.Show("Paid amount cannot be greater thatn total amount");
+                return;
+            }
+
+
             insertOrder();
             int OrderID = getOrderID();
             insertOrderDetails(OrderID);
@@ -226,8 +233,8 @@ namespace Pos
                 printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
                 printDocument1.DefaultPageSettings.PaperSize.Width = 520;
 
-              /*  printPreviewDialog1.Document = printDocument1;
-                printPreviewDialog1.ShowDialog();*/
+                /* printPreviewDialog1.Document = printDocument1;
+                  printPreviewDialog1.ShowDialog();*/
                 printDocument1.Print();
             }
             this.Close();
@@ -260,7 +267,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -285,7 +292,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
             this.OrderID = OrderID;
             return OrderID;
@@ -336,7 +343,7 @@ namespace Pos
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
 
@@ -460,8 +467,15 @@ namespace Pos
                 }
 
                 graphics.DrawString(underLine, new Font("calibri", 10), new SolidBrush(Color.Black), 0, startY + Offset);
+
                 Offset = Offset + 15;
                 graphics.DrawString("Total", new Font("Calibri", 8), new SolidBrush(Color.Black), 0, startY + Offset);
+                graphics.DrawString(this.txtbxTotal.Text, new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("Discount", new Font("Calibri", 8), new SolidBrush(Color.Black), 0, startY + Offset);
+                graphics.DrawString(this.txtbxDiscount.Text, new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
+                Offset = Offset + 15;
+                graphics.DrawString("Cash Received", new Font("Calibri", 8), new SolidBrush(Color.Black), 0, startY + Offset);
                 graphics.DrawString(this.txtbxpaid.Text, new Font("Calibri", 8), new SolidBrush(Color.Black), startX + 200, startY + Offset);
                 Offset = Offset + 15;
                 graphics.DrawString("Print Date/Time :  " + DateTime.Now.ToString("d, MMMM, yyyy. hh:mm - tt "), new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
@@ -474,12 +488,12 @@ namespace Pos
                 Offset = Offset + 15;
                 graphics.DrawString("-Goods may be exchanged within 15 days with bill receipt.", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 15;
-               
+
                 graphics.DrawString("-No exchange for used/damaged/altered product .", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
                 Offset = Offset + 15;
                 graphics.DrawString("-Good condition(With tags) product can be exchanged.", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
 
-                Offset = Offset + 15; 
+                Offset = Offset + 15;
                 graphics.DrawString("By : SMK Technologies Contact : 03452408728", new Font("Calibri", 8), new SolidBrush(Color.Black), startX, startY + Offset);
             }
             catch (Exception ex)
@@ -523,12 +537,12 @@ namespace Pos
             if (txtbxDiscount.Text.Length > 0)
             {
                 txtNetTotal.Text = (Double.Parse(txtbxTotal.Text) - Double.Parse(txtbxDiscount.Text)).ToString();
+                txtbxpaid.Text = txtNetTotal.Text;
             }
             else
             {
                 txtNetTotal.Text = txtbxTotal.Text;
-
-
+                txtbxpaid.Text = txtNetTotal.Text;
             }
         }
 
@@ -546,17 +560,23 @@ namespace Pos
             }
         }
 
-      /*  private void button1_Click(object sender, EventArgs e)
+        private void cmbbxitem_KeyDown(object sender, KeyEventArgs e)
         {
-            PaperSize psize = new PaperSize("Custom", 100, 30000);
+            cmbbxitem.DroppedDown = false;
 
-            printDocument1.DefaultPageSettings.PaperSize = psize;
-            printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
-            printDocument1.DefaultPageSettings.PaperSize.Width = 520;
+        }
 
-            printPreviewDialog1.Document = printDocument1;
-            printPreviewDialog1.ShowDialog();
-            // printDocument1.Print();
-        }*/
+        /*  private void button1_Click(object sender, EventArgs e)
+          {
+              PaperSize psize = new PaperSize("Custom", 100, 30000);
+
+              printDocument1.DefaultPageSettings.PaperSize = psize;
+              printDocument1.DefaultPageSettings.PaperSize.Height = 30000;
+              printDocument1.DefaultPageSettings.PaperSize.Width = 520;
+
+              printPreviewDialog1.Document = printDocument1;
+              printPreviewDialog1.ShowDialog();
+              // printDocument1.Print();
+          }*/
     }
 }
