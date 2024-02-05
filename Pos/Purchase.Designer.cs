@@ -64,6 +64,10 @@
             this.txtbxPrice = new System.Windows.Forms.TextBox();
             this.lblPrice = new System.Windows.Forms.Label();
             this.lblItem = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.txtbxSearch = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.errprvdr_quantity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dtgviewItems)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +81,7 @@
             // cmbbx_PurchaseAcc
             // 
             this.cmbbx_PurchaseAcc.FormattingEnabled = true;
-            this.cmbbx_PurchaseAcc.Location = new System.Drawing.Point(806, 88);
+            this.cmbbx_PurchaseAcc.Location = new System.Drawing.Point(806, 154);
             this.cmbbx_PurchaseAcc.Name = "cmbbx_PurchaseAcc";
             this.cmbbx_PurchaseAcc.Size = new System.Drawing.Size(100, 21);
             this.cmbbx_PurchaseAcc.TabIndex = 51;
@@ -85,7 +89,7 @@
             // lblPurchase
             // 
             this.lblPurchase.AutoSize = true;
-            this.lblPurchase.Location = new System.Drawing.Point(707, 91);
+            this.lblPurchase.Location = new System.Drawing.Point(707, 157);
             this.lblPurchase.Name = "lblPurchase";
             this.lblPurchase.Size = new System.Drawing.Size(98, 13);
             this.lblPurchase.TabIndex = 50;
@@ -94,7 +98,7 @@
             // txtremaining
             // 
             this.txtremaining.Enabled = false;
-            this.txtremaining.Location = new System.Drawing.Point(806, 221);
+            this.txtremaining.Location = new System.Drawing.Point(806, 287);
             this.txtremaining.Name = "txtremaining";
             this.txtremaining.Size = new System.Drawing.Size(100, 20);
             this.txtremaining.TabIndex = 49;
@@ -102,7 +106,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(709, 224);
+            this.label3.Location = new System.Drawing.Point(709, 290);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 13);
             this.label3.TabIndex = 48;
@@ -111,7 +115,7 @@
             // 
             // txtbxpaid
             // 
-            this.txtbxpaid.Location = new System.Drawing.Point(806, 195);
+            this.txtbxpaid.Location = new System.Drawing.Point(806, 261);
             this.txtbxpaid.Name = "txtbxpaid";
             this.txtbxpaid.Size = new System.Drawing.Size(100, 20);
             this.txtbxpaid.TabIndex = 47;
@@ -122,7 +126,7 @@
             // lblpaid
             // 
             this.lblpaid.AutoSize = true;
-            this.lblpaid.Location = new System.Drawing.Point(709, 198);
+            this.lblpaid.Location = new System.Drawing.Point(709, 264);
             this.lblpaid.Name = "lblpaid";
             this.lblpaid.Size = new System.Drawing.Size(31, 13);
             this.lblpaid.TabIndex = 46;
@@ -131,7 +135,7 @@
             // txtNetTotal
             // 
             this.txtNetTotal.Enabled = false;
-            this.txtNetTotal.Location = new System.Drawing.Point(806, 169);
+            this.txtNetTotal.Location = new System.Drawing.Point(806, 235);
             this.txtNetTotal.Name = "txtNetTotal";
             this.txtNetTotal.Size = new System.Drawing.Size(100, 20);
             this.txtNetTotal.TabIndex = 45;
@@ -139,7 +143,7 @@
             // lblNetTotal
             // 
             this.lblNetTotal.AutoSize = true;
-            this.lblNetTotal.Location = new System.Drawing.Point(709, 172);
+            this.lblNetTotal.Location = new System.Drawing.Point(709, 238);
             this.lblNetTotal.Name = "lblNetTotal";
             this.lblNetTotal.Size = new System.Drawing.Size(51, 13);
             this.lblNetTotal.TabIndex = 44;
@@ -148,7 +152,7 @@
             // 
             // txtbxDiscount
             // 
-            this.txtbxDiscount.Location = new System.Drawing.Point(806, 140);
+            this.txtbxDiscount.Location = new System.Drawing.Point(806, 206);
             this.txtbxDiscount.Name = "txtbxDiscount";
             this.txtbxDiscount.Size = new System.Drawing.Size(100, 20);
             this.txtbxDiscount.TabIndex = 43;
@@ -159,7 +163,7 @@
             // lblDiscount
             // 
             this.lblDiscount.AutoSize = true;
-            this.lblDiscount.Location = new System.Drawing.Point(709, 143);
+            this.lblDiscount.Location = new System.Drawing.Point(709, 209);
             this.lblDiscount.Name = "lblDiscount";
             this.lblDiscount.Size = new System.Drawing.Size(49, 13);
             this.lblDiscount.TabIndex = 42;
@@ -169,7 +173,7 @@
             // 
             this.cmbbxSize.Enabled = false;
             this.cmbbxSize.FormattingEnabled = true;
-            this.cmbbxSize.Location = new System.Drawing.Point(261, 26);
+            this.cmbbxSize.Location = new System.Drawing.Point(261, 92);
             this.cmbbxSize.Name = "cmbbxSize";
             this.cmbbxSize.Size = new System.Drawing.Size(99, 21);
             this.cmbbxSize.TabIndex = 41;
@@ -178,7 +182,7 @@
             // lblSize
             // 
             this.lblSize.AutoSize = true;
-            this.lblSize.Location = new System.Drawing.Point(258, 11);
+            this.lblSize.Location = new System.Drawing.Point(258, 77);
             this.lblSize.Name = "lblSize";
             this.lblSize.Size = new System.Drawing.Size(27, 13);
             this.lblSize.TabIndex = 40;
@@ -187,7 +191,7 @@
             // btnAdd
             // 
             this.btnAdd.Enabled = false;
-            this.btnAdd.Location = new System.Drawing.Point(606, 25);
+            this.btnAdd.Location = new System.Drawing.Point(606, 91);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(55, 23);
             this.btnAdd.TabIndex = 39;
@@ -198,7 +202,7 @@
             // lblQuantity
             // 
             this.lblQuantity.AutoSize = true;
-            this.lblQuantity.Location = new System.Drawing.Point(469, 11);
+            this.lblQuantity.Location = new System.Drawing.Point(469, 77);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(46, 13);
             this.lblQuantity.TabIndex = 38;
@@ -207,7 +211,7 @@
             // txtbxQuantity
             // 
             this.txtbxQuantity.Enabled = false;
-            this.txtbxQuantity.Location = new System.Drawing.Point(472, 26);
+            this.txtbxQuantity.Location = new System.Drawing.Point(472, 92);
             this.txtbxQuantity.Name = "txtbxQuantity";
             this.txtbxQuantity.Size = new System.Drawing.Size(100, 20);
             this.txtbxQuantity.TabIndex = 37;
@@ -217,7 +221,7 @@
             // lblStock
             // 
             this.lblStock.AutoSize = true;
-            this.lblStock.Location = new System.Drawing.Point(363, 8);
+            this.lblStock.Location = new System.Drawing.Point(363, 74);
             this.lblStock.Name = "lblStock";
             this.lblStock.Size = new System.Drawing.Size(35, 13);
             this.lblStock.TabIndex = 36;
@@ -239,7 +243,7 @@
             this.Total,
             this.Remove});
             this.dtgviewItems.GridColor = System.Drawing.SystemColors.Highlight;
-            this.dtgviewItems.Location = new System.Drawing.Point(28, 63);
+            this.dtgviewItems.Location = new System.Drawing.Point(28, 129);
             this.dtgviewItems.Name = "dtgviewItems";
             this.dtgviewItems.ReadOnly = true;
             this.dtgviewItems.Size = new System.Drawing.Size(647, 379);
@@ -306,7 +310,7 @@
             // btn_Submit
             // 
             this.btn_Submit.Enabled = false;
-            this.btn_Submit.Location = new System.Drawing.Point(722, 276);
+            this.btn_Submit.Location = new System.Drawing.Point(722, 342);
             this.btn_Submit.Name = "btn_Submit";
             this.btn_Submit.Size = new System.Drawing.Size(173, 23);
             this.btn_Submit.TabIndex = 29;
@@ -317,7 +321,7 @@
             // txtbxTotal
             // 
             this.txtbxTotal.Enabled = false;
-            this.txtbxTotal.Location = new System.Drawing.Point(806, 114);
+            this.txtbxTotal.Location = new System.Drawing.Point(806, 180);
             this.txtbxTotal.Name = "txtbxTotal";
             this.txtbxTotal.Size = new System.Drawing.Size(100, 20);
             this.txtbxTotal.TabIndex = 28;
@@ -325,7 +329,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(707, 117);
+            this.label1.Location = new System.Drawing.Point(707, 183);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 13);
             this.label1.TabIndex = 27;
@@ -334,15 +338,16 @@
             // txtbxStock
             // 
             this.txtbxStock.Enabled = false;
-            this.txtbxStock.Location = new System.Drawing.Point(366, 25);
+            this.txtbxStock.Location = new System.Drawing.Point(366, 91);
             this.txtbxStock.Name = "txtbxStock";
             this.txtbxStock.Size = new System.Drawing.Size(100, 20);
             this.txtbxStock.TabIndex = 35;
             // 
             // cmbbxitem
             // 
+            this.cmbbxitem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbbxitem.FormattingEnabled = true;
-            this.cmbbxitem.Location = new System.Drawing.Point(28, 26);
+            this.cmbbxitem.Location = new System.Drawing.Point(28, 92);
             this.cmbbxitem.Name = "cmbbxitem";
             this.cmbbxitem.Size = new System.Drawing.Size(121, 21);
             this.cmbbxitem.TabIndex = 33;
@@ -350,7 +355,7 @@
             // 
             // txtbxPrice
             // 
-            this.txtbxPrice.Location = new System.Drawing.Point(155, 27);
+            this.txtbxPrice.Location = new System.Drawing.Point(155, 93);
             this.txtbxPrice.Name = "txtbxPrice";
             this.txtbxPrice.Size = new System.Drawing.Size(100, 20);
             this.txtbxPrice.TabIndex = 32;
@@ -359,7 +364,7 @@
             // lblPrice
             // 
             this.lblPrice.AutoSize = true;
-            this.lblPrice.Location = new System.Drawing.Point(155, 11);
+            this.lblPrice.Location = new System.Drawing.Point(155, 77);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(31, 13);
             this.lblPrice.TabIndex = 31;
@@ -368,17 +373,57 @@
             // lblItem
             // 
             this.lblItem.AutoSize = true;
-            this.lblItem.Location = new System.Drawing.Point(28, 10);
+            this.lblItem.Location = new System.Drawing.Point(28, 76);
             this.lblItem.Name = "lblItem";
-            this.lblItem.Size = new System.Drawing.Size(60, 13);
+            this.lblItem.Size = new System.Drawing.Size(44, 13);
             this.lblItem.TabIndex = 34;
-            this.lblItem.Text = "Select Item";
+            this.lblItem.Text = "Product";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(219, 26);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(75, 23);
+            this.btnClear.TabIndex = 57;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(31, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 56;
+            this.label2.Text = "Search";
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(138, 27);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 55;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // txtbxSearch
+            // 
+            this.txtbxSearch.Location = new System.Drawing.Point(32, 29);
+            this.txtbxSearch.Name = "txtbxSearch";
+            this.txtbxSearch.Size = new System.Drawing.Size(100, 20);
+            this.txtbxSearch.TabIndex = 54;
             // 
             // Purchase
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 450);
+            this.ClientSize = new System.Drawing.Size(934, 521);
+            this.Controls.Add(this.btnClear);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtbxSearch);
             this.Controls.Add(this.cmbbx_PurchaseAcc);
             this.Controls.Add(this.lblPurchase);
             this.Controls.Add(this.txtremaining);
@@ -451,5 +496,9 @@
         private System.Windows.Forms.TextBox txtbxPrice;
         private System.Windows.Forms.Label lblPrice;
         private System.Windows.Forms.Label lblItem;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.TextBox txtbxSearch;
     }
 }

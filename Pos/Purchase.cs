@@ -50,6 +50,7 @@ namespace Pos
                     txtbxTotal.Text = TotalPurchaseSum.ToString();
                     txtNetTotal.Text = TotalPurchaseSum.ToString();
                     txtremaining.Text = TotalPurchaseSum.ToString();
+                    btnAdd.Enabled = false;
                 }
                 else
                 {
@@ -146,8 +147,7 @@ namespace Pos
                 cmbbxitem.DataSource = dTableproducts;
                 cmbbxitem.DisplayMember = "Name";
                 cmbbxitem.ValueMember = "id";
-                cmbbxitem.AutoCompleteMode = AutoCompleteMode.Suggest;
-                cmbbxitem.AutoCompleteSource = AutoCompleteSource.ListItems;
+               
                 MyConn2.Close();
 
             }
@@ -478,6 +478,50 @@ namespace Pos
             if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
             {
                 e.Handled = true;
+            }
+        }
+
+
+
+        private void cmbbxitem_KeyDown(object sender, KeyEventArgs e)
+        {
+            cmbbxitem.DroppedDown = false;
+
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtbxSearch.Text))
+                {
+                    dTableproducts.DefaultView.RowFilter = string.Empty;
+                    txtbxSearch.Clear();
+                }
+                else
+                {
+                    dTableproducts.DefaultView.RowFilter = " Name Like '%" + txtbxSearch.Text.Trim() + "%'";
+                }
+
+                btnAdd.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dTableproducts.DefaultView.RowFilter = string.Empty;
+                txtbxSearch.Clear();
+                btnAdd.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
         }
     }

@@ -80,8 +80,6 @@ namespace Pos
                 cmbbxitem.DataSource = dTableproducts;
                 cmbbxitem.DisplayMember = "Name";
                 cmbbxitem.ValueMember = "id";
-                cmbbxitem.AutoCompleteMode = AutoCompleteMode.Suggest;
-                cmbbxitem.AutoCompleteSource = AutoCompleteSource.ListItems;
                 MyConn2.Close();
 
             }
@@ -146,7 +144,7 @@ namespace Pos
                         txtNetTotal.Text = TotalOrderSum.ToString();
                         txtremaining.Text = "0";
                         txtbxpaid.Text = TotalOrderSum.ToString();
-
+                        btnAdd.Enabled = false;
                     }
                     else
                     {
@@ -213,12 +211,12 @@ namespace Pos
 
         private void btn_Submit_Click(object sender, EventArgs e)
         {
-            if(Convert.ToDouble(txtbxpaid.Text) > Convert.ToDouble(txtNetTotal.Text))
+            if (Convert.ToDouble(txtbxpaid.Text) > Convert.ToDouble(txtNetTotal.Text))
             {
-                MessageBox.Show("Paid amount cannot be greater thatn total amount");
+                MessageBox.Show("Paid amount cannot be greater than total amount");
                 return;
             }
-
+            dTableproducts.DefaultView.RowFilter = string.Empty;
 
             insertOrder();
             int OrderID = getOrderID();
@@ -560,10 +558,49 @@ namespace Pos
             }
         }
 
-        private void cmbbxitem_KeyDown(object sender, KeyEventArgs e)
-        {
-            cmbbxitem.DroppedDown = false;
 
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtbxSearch.Text))
+                {
+                    dTableproducts.DefaultView.RowFilter = string.Empty;
+                    txtbxSearch.Clear();
+                }
+                else
+                {
+                    dTableproducts.DefaultView.RowFilter = " Name Like '%" + txtbxSearch.Text.Trim() + "%'";
+                }
+
+                /* cmbbxitem.DataSource = dTableproducts;
+                 cmbbxitem.DisplayMember = "Name";
+                 cmbbxitem.ValueMember = "id";
+                 cmbbxitem.AutoCompleteMode = AutoCompleteMode.Suggest;
+                 cmbbxitem.AutoCompleteSource = AutoCompleteSource.ListItems;*/
+
+                btnAdd.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
+            }
+        }
+
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                dTableproducts.DefaultView.RowFilter = string.Empty;
+                txtbxSearch.Clear();
+                btnAdd.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
+            }
         }
 
         /*  private void button1_Click(object sender, EventArgs e)
