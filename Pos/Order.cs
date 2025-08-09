@@ -139,6 +139,7 @@ namespace Pos
                             );
                         DictOrderDetails.Add(Productkey, new ProductDetails(cmbbxitem.Text, Convert.ToInt32(txtbxQuantity.Text), Convert.ToDouble(txtbxPrice.Text), Total, Stock - Quantity));
                         btn_Submit.Enabled = true;
+                        btn_Submit_Order_wout_Receipt.Enabled = true;
                         TotalOrderSum += Total;
                         txtbxTotal.Text = TotalOrderSum.ToString();
                         txtNetTotal.Text = TotalOrderSum.ToString();
@@ -205,6 +206,7 @@ namespace Pos
                 if (DictOrderDetails.Count <= 0)
                 {
                     btn_Submit.Enabled = false;
+                    btn_Submit_Order_wout_Receipt.Enabled = false;
                 }
             }
         }
@@ -601,6 +603,22 @@ namespace Pos
             {
                 MessageBox.Show(ex.Message + " \n " + ex.StackTrace);
             }
+        }
+
+        private void btn_Submit_Order_wout_Receipt_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToDouble(txtbxpaid.Text) > Convert.ToDouble(txtNetTotal.Text))
+            {
+                MessageBox.Show("Paid amount cannot be greater than total amount");
+                return;
+            }
+            dTableproducts.DefaultView.RowFilter = string.Empty;
+
+            insertOrder();
+            int OrderID = getOrderID();
+            insertOrderDetails(OrderID);
+            MessageBox.Show("Order Submitted Successfully,Order ID : " + OrderID.ToString());
+            this.Close();
         }
 
         /*  private void button1_Click(object sender, EventArgs e)
